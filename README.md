@@ -7,8 +7,8 @@ Github-prosjekt for litterært program i norskfaget.
 [Ferdig Google Docs om språkhistorie](https://docs.google.com/document/d/12GljvkvfWXZeozs0sqPwOhUSC2dBpbCTTGr1HZsNdlo/edit?usp=sharing)
 
 ## To do
-- [] Design
-- [] Tekst om språkhistorie
-- [] Tekst om dialekter
-- [] Quiz om språkhistorie
-- [] Kart-quiz om dialekter
+- [ ] Design
+- [ ] Tekst om språkhistorie
+- [ ] Tekst om dialekter
+- [ ] Quiz om språkhistorie
+- [ ] Kart-quiz om dialekter
