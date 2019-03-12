@@ -1,6 +1,14 @@
 # ProjectLitteraertProgram
 Github-prosjekt for litterært program i norskfaget. 
 
+## Oversikt
+* Startside
+* Infoside om språkhistorie (timeline)
+* Infoside om dialekter (hør på dialektene)
+* Quiz om språkhistorie (multiple choice)
+* Kart-quiz om dialekter (kart)
+* Admin (scoreboards)
+
 ## Dokumenter
 [Felles Google Docs til quiz](https://docs.google.com/document/d/1k786bBGN7E99t4JQLBTRwmotQB2Qsu_IQl3b-e-nLrw/edit?usp=sharing)
 <br>
