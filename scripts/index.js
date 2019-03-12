@@ -1,9 +1,9 @@
-// JavaScript source code
 // jshint esversion: 6
 
 /* ---------- DOM ---------- */
 
 let footer = document.querySelector('footer');
+let wrapTitle = document.querySelector('#wrapTitle');
 
 
 
@@ -13,6 +13,14 @@ let footer = document.querySelector('footer');
 
 let footerCompHeight = window.getComputedStyle(footer).height;
 let footerHeight = pxToNum(footerCompHeight);
+
+
+
+
+
+/* ---------- DATA ---------- */
+
+let title = [ 'norsk', 'språk', 'og', 'dialekter' ];
 
 
 
@@ -42,6 +50,24 @@ function footerTop() {
 
 
 
+/* ---------- MAKE H2 ---------- */
+
+function makeTitle() {
+  // add a h2 for ech part of the title
+
+  title.forEach(el => {
+    wrapTitle.innerHTML += `<h2>${el}</h2>`;
+  });
+
+  console.log('make title h2');
+
+}
+
+
+
+
+
 /* ---------- REGISTER FUNCTIONS ---------- */
 
 footerTop();
+makeTitle();
