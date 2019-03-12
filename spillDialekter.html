@@ -15,11 +15,15 @@
         <div id="dialektspillContainer">
             <div id="registreringsContainer">
                 <h2>Dialektspillet - start et nytt spill</h2>
+                <p>Velkommen til dialektspillet! I dette spillet får du høre dialekter fra ulike områder i Norge, som du skal plassere på norgeskartet. Lykke til!</p>
                 <form id="form">
                     <label>Ditt navn</label>
                     <input type="text" autofocus required />
-                    <button id="startSpill">Start spillet!</button>
+                    <button type="submit">Start spillet!</button>
                 </form>
+                <div class="highscoreContainer">
+
+                </div>
             </div>
             <div id="spillContainer">
                 <div id="venstre">
@@ -31,15 +35,25 @@
                         <source src="file.ogg" type="audio/ogg" />
                     </audio>
                     <div>
-                        <button>Avgi svar</button>
-                        <button>Neste dialekt</button>
+                        <button>Sjekk svar</button>
+                        <button id="knappNeste">Neste dialekt</button>
                     </div>
                 </div>
                 <div id="hoyre">
                     <img id="kartBilde" src="media/tempKartspill.jpg" alt="Feil ved lasting av kartbilde" />
                 </div>
             </div>
+            <div id="resultatContainer">
+                <h2>Takk for at du spilte dialektspillet!</h2>
+                <p>Din score ble: </p>
+                <div class="highscoreContainer">
+
+                </div>
+                <button onclick="window.location.reload()">Spill på nytt</button>
+                <button onclick="window.location = 'index.html'">Tilbake til hovedsiden</button>
+            </div>
         </div>
     </main>
+    <script src="scripts/spillDialekt.js"></script>
 </body>
 </html>
