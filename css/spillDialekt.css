@@ -1,0 +1,48 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main {
+    width: 50rem;
+    height: 35rem;
+}
+
+#dialektspillContainer {
+    border: 1px dashed black; /*Temp*/
+    width: 100%;
+    height: 100%;
+}
+#spillContainer {
+    display: none; /*settes i js til flex*/
+}
+#spillContainer div {
+    height: 100%;
+    flex-basis: 50%;
+    text-align: center;
+}
+#hoyre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#hoyre img {
+    width: 100%;
+}
+#registreringsContainer {
+    display: flex; 
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    text-align: center; 
+}
+#registreringsContainer form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}

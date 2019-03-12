@@ -5,11 +5,41 @@
     <link rel="shortcut icon" href="favicon/favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon/favicon.ico" type="image/x-icon">
     <!-- FIX FOR MOBILE ENHETER -->
+    <link href="css/spillDialekt.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta charset="utf-8" />
     <title></title>
 </head>
 <body>
-
+    <main>
+        <div id="dialektspillContainer">
+            <div id="registreringsContainer">
+                <h2>Dialektspillet - start et nytt spill</h2>
+                <form id="form">
+                    <label>Ditt navn</label>
+                    <input type="text" autofocus required />
+                    <button id="startSpill">Start spillet!</button>
+                </form>
+            </div>
+            <div id="spillContainer">
+                <div id="venstre">
+                    <h2>Hvor snakkes dialekten?</h2>
+                    <p>Din score: 0</p>
+                    <p id="dialektTekst">placeholder teksten som leses opp</p>
+                    <audio controls="controls">
+                        <source src="file.mp3" type="audio/mp3" />
+                        <source src="file.ogg" type="audio/ogg" />
+                    </audio>
+                    <div>
+                        <button>Avgi svar</button>
+                        <button>Neste dialekt</button>
+                    </div>
+                </div>
+                <div id="hoyre">
+                    <img id="kartBilde" src="media/tempKartspill.jpg" alt="Feil ved lasting av kartbilde" />
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
