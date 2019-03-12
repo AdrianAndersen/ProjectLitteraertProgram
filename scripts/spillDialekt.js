@@ -27,11 +27,18 @@
         document.querySelector("#registreringsContainer").style.display = "none";
         document.querySelector("#spillContainer").style.display = "flex";
         document.querySelector("#knappNeste").addEventListener("click", visNesteDialekt);
+        document.querySelector("#knappSjekkSvar").addEventListener("click", sjekkSvar);
         lagDialektrekkefolge();
         aktivDialektIndex = -1;
         visNesteDialekt();
     }
     function visNesteDialekt() {
+        document.querySelector("audio").style.display = "block";
+        document.querySelector("#spillSvarPo").style.display = "none";
+        document.querySelector("#spillSvarPl").style.display = "none";
+        document.querySelector("#dialektTekst").style.display = "block";
+        document.querySelector("#knappSjekkSvar").disabled = "";
+
         aktivDialektIndex++;
         if (aktivDialektIndex === dialekter.length) {
             avsluttSpill();
@@ -39,7 +46,7 @@
         }
         console.log(aktivDialektIndex);
         if (aktivDialektIndex === dialekter.length-1) {
-            document.querySelector("#knappNeste").innerHTML = "Fullfør test";
+            document.querySelector("#knappNeste").innerHTML = "Fullfør spill";
         }
     }
     function lagDialektrekkefolge() {
@@ -66,11 +73,18 @@
             return array;
         }
     }
+    function sjekkSvar() {
+        document.querySelector("audio").style.display = "none";
+        document.querySelector("#spillSvarPo").style.display = "block";
+        document.querySelector("#spillSvarPl").style.display = "block";
+        document.querySelector("#dialektTekst").style.display = "none";
+        document.querySelector("#knappSjekkSvar").disabled = "true";
+        // Vis markør på kart
+
+    }
     function avsluttSpill() {
         document.querySelector("#spillContainer").style.display = "none";
         document.querySelector("#resultatContainer").style.display = "flex";
-
-
     }
     document.querySelector("#form").addEventListener("submit", startSpill);
 })();

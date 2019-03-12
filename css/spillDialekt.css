@@ -51,3 +51,17 @@ main {
 #resultatContainer {
     display: none;
 }
+.highscoreContainer {
+    width: 20rem;
+    display: grid;
+}
+.highscoreContainer div {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    border: 1px solid black;
+    padding: 1rem;
+}
+.highscoreContainer *  {
+    margin: 0;
+    padding: 0;
+}
