@@ -1,5 +1,8 @@
 ﻿(() => {
     "use strict";
+    const db = firebase.firestore();
+    hentHighscores();
+
     const dialekter = [{
         riktigOmraade: "Trøndelag",
         lydfilSrc: "trondelag.mp3",
@@ -22,15 +25,59 @@
     const antallDialekter = dialekter.length;
     let rekkefolge = [];
     let aktivDialektIndex;
+    let antallPoeng = 0;
+    let spillernavn;
     function startSpill(e) {
         e.preventDefault();
+        spillernavn = document.querySelector("input").value;
+
         document.querySelector("#registreringsContainer").style.display = "none";
         document.querySelector("#spillContainer").style.display = "flex";
         document.querySelector("#knappNeste").addEventListener("click", visNesteDialekt);
         document.querySelector("#knappSjekkSvar").addEventListener("click", sjekkSvar);
+
         lagDialektrekkefolge();
         aktivDialektIndex = -1;
         visNesteDialekt();
+    }
+    function hentHighscores() {
+        const containerliste = document.querySelectorAll(".highscoreContainer");
+        for (let i = 0; i < containerliste.length; i++) {
+            containerliste[i].innerHTML = "";
+        }
+        let scoreliste = [];
+        db.collection("highscores").get().then((querySnapshot) => {
+            querySnapshot.forEach((entry) => {
+                const nyScore = {
+                    spillernavn: entry.data().spillernavn,
+                    score: entry.data().score
+                };
+                scoreliste.push(nyScore);
+            });
+            scoreliste.sort(compare);
+            for (let i = 0; i < 5; i++) {
+                leggTilPaaScoreBoard(scoreliste[i].spillernavn, scoreliste[i].score);
+            }
+        });
+        function compare(a, b) {
+            if (a.score > b.score)
+                return -1;
+            if (a.score < b.score)
+                return 1;
+            return 0;
+        }
+        function leggTilPaaScoreBoard(spillernavn, score) {
+            for (let i = 0; i < containerliste.length; i++) {
+                const nyDiv = document.createElement("div");
+                containerliste[i].appendChild(nyDiv);
+                const nyttNavnEl = document.createElement("h4");
+                nyttNavnEl.innerHTML = spillernavn;
+                const nyttScoreEl = document.createElement("p");
+                nyttScoreEl.innerHTML = score;
+                nyDiv.appendChild(nyttNavnEl);
+                nyDiv.appendChild(nyttScoreEl);
+            }
+        }
     }
     function visNesteDialekt() {
         document.querySelector("audio").style.display = "block";
@@ -44,7 +91,6 @@
             avsluttSpill();
             return;
         }
-        console.log(aktivDialektIndex);
         if (aktivDialektIndex === dialekter.length-1) {
             document.querySelector("#knappNeste").innerHTML = "Fullfør spill";
         }
@@ -85,6 +131,12 @@
     function avsluttSpill() {
         document.querySelector("#spillContainer").style.display = "none";
         document.querySelector("#resultatContainer").style.display = "flex";
+        db.collection("highscores").add({
+            spillernavn: spillernavn,
+            score: antallPoeng
+        });
+        hentHighscores();
+
     }
     document.querySelector("#form").addEventListener("submit", startSpill);
 })();
