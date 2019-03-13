@@ -119,6 +119,13 @@ footer p {
 
 
 
+.frontFooter {
+  display: none;
+}
+
+
+
+
 
 #wrapAll {
   width: 95vw;
