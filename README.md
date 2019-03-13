@@ -15,7 +15,7 @@ Github-prosjekt for litterært program i norskfaget.
 [Ferdig Google Docs om språkhistorie](https://docs.google.com/document/d/12GljvkvfWXZeozs0sqPwOhUSC2dBpbCTTGr1HZsNdlo/edit?usp=sharing)
 
 ## To do
-- [ ] Design (base: done)
+- [ ] Design (base: done; info: done; dialekter: delvis; footer: ???; back to top: ???)
 - [ ] Tekst om språkhistorie
 - [ ] Tekst om dialekter
 - [ ] Quiz om språkhistorie

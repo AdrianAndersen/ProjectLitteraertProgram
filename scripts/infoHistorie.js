@@ -70,16 +70,16 @@ function pxToNum(string) {
 
 function mainTop() {
   // adjust margin top
-  main.style.setProperty('--mainTop', `${2*navHeight}px`);
+  main.style.setProperty('--mainTop', `${navHeight}px`);
 }
 
 
 
 
 
-/* ---------- SET COL NUM ---------- */
+/* ---------- SET ROW NUM ---------- */
 
-function colNum() {
+function rowNum() {
   // adjust columns in info text
   mainInfo.style.setProperty('--rowNum', `${data.length}`);
 }
@@ -129,7 +129,7 @@ function insertData() {
 /* ---------- REGISTER FUNCTIONS ---------- */
 
 mainTop();
-colNum();
+rowNum();
 footerTop();
 
 insertData();
