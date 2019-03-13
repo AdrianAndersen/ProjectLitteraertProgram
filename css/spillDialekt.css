@@ -7,61 +7,73 @@
     justify-content: center;
     align-items: center;
 }
+
 main {
     width: 50rem;
     height: 35rem;
 }
 
 #dialektspillContainer {
-    border: 1px dashed black; /*Temp*/
     width: 100%;
     height: 100%;
 }
+
 #spillContainer {
-    display: none; /*settes i js til flex*/
-}
-#spillContainer div {
     height: 100%;
-    flex-basis: 50%;
+    width: 100%;
+    display: none; 
+}
+
+    #spillContainer #hoyre, #spillContainer #venstre {
+        height: 100%;
+        flex-basis: 50%;
+        text-align: center;
+    }
+
+#hoyre {
+    height: 100%;
+    width: 100%;
+}
+
+#registreringsContainer {
+    display: flex 
+}
+
+#registreringsContainer, #resultatContainer {
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    align-items: center;
     text-align: center;
 }
-#hoyre {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#hoyre img {
-    width: 100%;
-}
-#registreringsContainer {
-    display: flex
-}
-#registreringsContainer,  #resultatContainer{
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-    align-items: center;
-    text-align: center; 
-}
-#registreringsContainer form {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-}
+
+    #registreringsContainer form {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+
 #resultatContainer {
     display: none;
 }
+
 .highscoreContainer {
     width: 20rem;
     display: grid;
 }
-.highscoreContainer div {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    border: 1px solid black;
-    padding: 1rem;
-}
-.highscoreContainer *  {
-    margin: 0;
-    padding: 0;
-}
+
+    .highscoreContainer div {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        border: 1px solid black;
+        padding: 1rem;
+    }
+
+    .highscoreContainer * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #map {
+        height: 100%;
+    }
