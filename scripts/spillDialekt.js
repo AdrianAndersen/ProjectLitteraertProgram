@@ -1,6 +1,5 @@
 ﻿"use strict";
 const db = firebase.firestore();
-hentHighscores();
 
 const dialekter = [{
     riktigOmraade: "Trøndelag",
@@ -32,13 +31,17 @@ const dialekter = [{
     maksScoreRadius: 50000
 }
 ];
+let spillerID;
 let rekkefolge = [];
 let aktivDialektIndex;
 let antallPoeng = 0;
 let spillernavn;
 let scoreRunde = 0;
+let scoreliste = [];
+hentHighscores();
 function startSpill(e) {
     e.preventDefault();
+    spillerID = "A" + Math.floor(Math.random() * 10000000);
     spillernavn = document.querySelector("input").value;
     document.querySelector("#registreringsContainer").style.display = "none";
     document.querySelector("#spillContainer").style.display = "flex";
@@ -51,22 +54,33 @@ function startSpill(e) {
 }
 function hentHighscores() {
     const containerliste = document.querySelectorAll(".highscoreContainer");
+    scoreliste = [];
     for (let i = 0; i < containerliste.length; i++) {
         containerliste[i].innerHTML = "";
     }
-    let scoreliste = [];
-    db.collection("highscores").get().then((querySnapshot) => {
-        querySnapshot.forEach((entry) => {
-            const nyScore = {
-                spillernavn: entry.data().spillernavn,
-                score: entry.data().score
-            };
-            scoreliste.push(nyScore);
-        });
+    function callback() {
         scoreliste.sort(compare);
         for (let i = 0; i < 5; i++) {
             leggTilPaaScoreBoard(scoreliste[i].spillernavn, scoreliste[i].score);
         }
+        const plassering = finnPlassering();
+        document.querySelector("#scorePlassering").innerHTML = `Du kom på ${plassering}. plass blant alle som har spilt til nå!`;
+    }
+
+    let antallBehandledeEntries = 0;
+    db.collection("highscores").get().then((querySnapshot) => {
+        querySnapshot.forEach((entry) => {
+            const nyScore = {
+                spillernavn: entry.data().spillernavn,
+                score: entry.data().score,
+                ID: entry.data().ID
+            };
+            scoreliste.push(nyScore);
+            antallBehandledeEntries++;
+            if (antallBehandledeEntries === querySnapshot.size) {
+                callback();
+            }
+        });
     });
     function compare(a, b) {
         if (a.score > b.score)
@@ -89,6 +103,9 @@ function hentHighscores() {
     }
 }
 function visNesteDialekt() {
+    if (aktivDialektIndex > -1) {
+        sjekkSvar();
+    }
     clearOverlays();
     harAvgittSvar = false;
     valgtPosisjon = undefined;
@@ -143,7 +160,7 @@ function sjekkSvar() {
     harAvgittSvar = true;
     addMarker(dialekter[aktivDialektIndex].riktigKoordinat, "", false);
     const avstand = finnAvstand(dialekter[aktivDialektIndex].riktigKoordinat, valgtPosisjon);
-    scoreRunde = Math.round(-2 * avstand + 100000);
+    scoreRunde = 5000 * Math.pow(avstand,0.97);
     if (scoreRunde < 0) {
         scoreRunde = 0;
     }
@@ -170,11 +187,19 @@ function avsluttSpill() {
     document.querySelector("#sluttScore").innerHTML = "Din totale score ble: " + antallPoeng;
     db.collection("highscores").add({
         spillernavn: spillernavn,
-        score: antallPoeng
+        score: antallPoeng,
+        ID: spillerID
     });
     hentHighscores();
 }
 
+function finnPlassering() {
+    for (let i = 0; i < scoreliste.length; i++) {
+        if (spillerID === scoreliste[i].ID) {
+            return i + 1;
+        }
+    }
+}
 document.querySelector("#form").addEventListener("submit", startSpill);
 let harAvgittSvar = false;
 let markers = [];
@@ -198,9 +223,7 @@ function initMap() {
         }
     });
 }
-
 var image = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
-
 // Adds a marker to the map and push to the array.
 function addMarker(location, ikon, clear) {
     if (clear === true) {
@@ -219,11 +242,9 @@ function clearOverlays() {
     }
     markers.length = 0;
 }
-
 var rad = function (x) {
     return x * Math.PI / 180;
 };
-
 function finnAvstand(p1, p2) {
     var R = 6378137; // Earth’s mean radius in meter
     var dLat = rad(p2.lat - p1.lat);
