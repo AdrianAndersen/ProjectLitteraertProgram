@@ -8,6 +8,8 @@ let nav = document.querySelector('nav');
 let main = document.querySelector('main');
 let infoDialekt = document.querySelector('#infoDialekt');
 
+let wrapBtnsDialekt = document.querySelector('#wrapBtnsDialekt');
+
 let footer = document.querySelector('footer');
 
 
@@ -81,6 +83,13 @@ let data = [
   },
 ];
 
+let dialekter = [
+  'første',
+  'andre',
+  'tredje',
+  'fjerde'
+];
+
 
 
 
@@ -110,9 +119,41 @@ function mainTop() {
 /* ---------- SET ROW NUM ---------- */
 
 function rowNum() {
-  // adjust columns in info text
+  // adjust rows in info text
   infoDialekt.style.setProperty('--rowDialekt', `${data.length/2}`);
 }
+
+
+
+
+
+/* ---------- SET COL NUM AND ADD BUTTONS ---------- */
+
+function colNum() {
+  // adjust columns in wrapBtnsDialekt
+  wrapBtnsDialekt.style.setProperty('--colDialekt', `${dialekter.length}`);
+
+  dialekter.forEach(dialekt => {
+    wrapBtnsDialekt.innerHTML += `
+      <button type="button" id="btn${dialekt}" onclick="playAudio('${dialekt}')">${dialekt}</button>
+    `;
+  });
+
+}
+
+
+
+
+
+/* ---------- PLAY DIALEKT AUDIO ---------- */
+
+function playAudio(string) {
+
+  console.log(string);
+  console.log('playAudio');
+
+}
+
 
 
 
@@ -150,8 +191,6 @@ function insertData() {
     `;
   });
 
-  console.log('insertData');
-
 }
 
 
@@ -162,6 +201,7 @@ function insertData() {
 
 mainTop();
 rowNum();
+colNum();
 footerTop();
 
 insertData();
