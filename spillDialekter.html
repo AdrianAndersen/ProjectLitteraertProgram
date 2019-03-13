@@ -21,21 +21,43 @@
                     <input type="text" autofocus required />
                     <button type="submit">Start spillet!</button>
                 </form>
+                <h3>Topp 5 beste spillere</h3>
                 <div class="highscoreContainer">
-
+                    <div>
+                        <h4>Adrian</h4>
+                        <p>10</p>
+                    </div>
+                    <div>
+                        <h4>Adrian</h4>
+                        <p>10</p>
+                    </div>
+                    <div>
+                        <h4>Adrian</h4>
+                        <p>10</p>
+                    </div>
+                    <div>
+                        <h4>Adrian</h4>
+                        <p>10</p>
+                    </div>
+                    <div>
+                        <h4>Adrian</h4>
+                        <p>10</p>
+                    </div>
                 </div>
             </div>
             <div id="spillContainer">
                 <div id="venstre">
                     <h2>Hvor snakkes dialekten?</h2>
-                    <p>Din score: 0</p>
+                    <h4>Din score: 0</h4>
+                    <p id="spillSvarPo">Du fikk n poeng denne runden.</p>
+                    <p id="spillSvarPl">Riktig plassinger for dialekten: </p>
                     <p id="dialektTekst">placeholder teksten som leses opp</p>
                     <audio controls="controls">
                         <source src="file.mp3" type="audio/mp3" />
                         <source src="file.ogg" type="audio/ogg" />
                     </audio>
                     <div>
-                        <button>Sjekk svar</button>
+                        <button id="knappSjekkSvar">Sjekk svar</button>
                         <button id="knappNeste">Neste dialekt</button>
                     </div>
                 </div>
@@ -46,14 +68,50 @@
             <div id="resultatContainer">
                 <h2>Takk for at du spilte dialektspillet!</h2>
                 <p>Din score ble: </p>
-                <div class="highscoreContainer">
+                <p>Du kom på nte plass blant alle som har spilt spillet til nå!</p>
+                <h3>Topp 5 beste spillere</h3>
 
+                <div class="highscoreContainer">
+                    <div>
+                        <h4>Adrian</h4>
+                        <p>10</p>
+                    </div>
+                    <div>
+                        <h4>Adrian</h4>
+                        <p>10</p>
+                    </div>
+                    <div>
+                        <h4>Adrian</h4>
+                        <p>10</p>
+                    </div>
+                    <div>
+                        <h4>Adrian</h4>
+                        <p>10</p>
+                    </div>
+                    <div>
+                        <h4>Adrian</h4>
+                        <p>10</p>
+                    </div>
                 </div>
                 <button onclick="window.location.reload()">Spill på nytt</button>
                 <button onclick="window.location = 'index.html'">Tilbake til hovedsiden</button>
             </div>
         </div>
     </main>
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyABij34xIHs_S4Om2TVhcKYOzlBOlTPodQ",
+            authDomain: "projectlitteraertprogram.firebaseapp.com",
+            databaseURL: "https://projectlitteraertprogram.firebaseio.com",
+            projectId: "projectlitteraertprogram",
+            storageBucket: "",
+            messagingSenderId: "551583996743"
+        };
+        firebase.initializeApp(config);
+    </script>
     <script src="scripts/spillDialekt.js"></script>
 </body>
 </html>
