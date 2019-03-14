@@ -1,4 +1,5 @@
 ﻿"use strict";
+const image = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
 const db = firebase.firestore();
 
 const dialekter = [{
@@ -29,12 +30,17 @@ const dialekter = [{
 ];
 let spillerID;
 let rekkefolge = [];
+let finalRekkefolge = [];
 let aktivDialektIndex;
 let antallPoeng = 0;
 let spillernavn;
 let scoreRunde = 0;
 let scoreliste = [];
 let harSjekketSvar = false;
+let harAvgittSvar = false;
+let markers = [];
+let map;
+let valgtPosisjon = undefined;
 oppdaterScoreBoard();
 function startSpill(e) {
     e.preventDefault();
@@ -173,8 +179,12 @@ function sjekkSvar() {
     addMarker(dialekter[aktivDialektIndex].riktigKoordinat, "", false);
     let avstand;
     if (valgtPosisjon !== undefined) {
+        finalRekkefolge.push(valgtPosisjon);
         avstand = finnAvstand(dialekter[aktivDialektIndex].riktigKoordinat, valgtPosisjon);
     } else {
+        if (aktivDialektIndex !== 0) {
+            finalRekkefolge.push("NULL");
+        }
         avstand = Number.MAX_SAFE_INTEGER;
     }
     scoreRunde = Math.round(5000 * Math.exp(-avstand / 100000));
@@ -205,11 +215,12 @@ function avsluttSpill() {
     db.collection("highscores").add({
         spillernavn: spillernavn,
         score: antallPoeng,
-        ID: spillerID
+        ID: spillerID,
+        valgtePosisjoner: finalRekkefolge
     });
+    console.log(finalRekkefolge);
     oppdaterScoreBoard();
 }
-
 function finnPlassering() {
     for (let i = 0; i < scoreliste.length; i++) {
         if (spillerID === scoreliste[i].ID) {
@@ -217,11 +228,6 @@ function finnPlassering() {
         }
     }
 }
-document.querySelector("#form").addEventListener("submit", startSpill);
-let harAvgittSvar = false;
-let markers = [];
-let map;
-let valgtPosisjon = undefined;
 function initMap() {
     const startLocation = { lat: 66, lng: 15 };
 
@@ -239,7 +245,6 @@ function initMap() {
         }
     });
 }
-const image = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
 function addMarker(location, ikon, clear) {
     if (clear === true) {
         clearOverlays();
@@ -271,3 +276,4 @@ function finnAvstand(p1, p2) {
     const d = R * c;
     return d; // returns the distance in meter
 };
+document.querySelector("#form").addEventListener("submit", startSpill);
