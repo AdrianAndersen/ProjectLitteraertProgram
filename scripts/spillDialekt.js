@@ -67,7 +67,7 @@ function oppdaterScoreBoard() {
     scoreliste = [];
 
     let antallBehandledeEntries = 0;
-    db.collection("highscores").get().then((querySnapshot) => {
+    db.collection("HSDialektspillet").get().then((querySnapshot) => {
         querySnapshot.forEach((entry) => {
             const nyScore = {
                 spillernavn: entry.data().spillernavn,
@@ -212,7 +212,7 @@ function avsluttSpill() {
     document.querySelector("#spillContainer").style.display = "none";
     document.querySelector("#resultatContainer").style.display = "flex";
     document.querySelector("#sluttScore").innerHTML = "Din totale score ble: " + antallPoeng;
-    db.collection("highscores").add({
+    db.collection("HSDialektspillet").add({
         spillernavn: spillernavn,
         score: antallPoeng,
         ID: spillerID,
