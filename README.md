@@ -19,4 +19,4 @@ Github-prosjekt for litterært program i norskfaget.
 - [ ] Tekst om språkhistorie
 - [ ] Tekst om dialekter
 - [ ] Quiz om språkhistorie
-- [ ] Kart-quiz om dialekter (Mangler styles og trenger en bedre funksjon for poengivning)
+- [ ] Kart-quiz om dialekter (Mangler styles og oppkobling mot adminsside (status, statistikk, aktive spillere, alle sine markører, osv.))

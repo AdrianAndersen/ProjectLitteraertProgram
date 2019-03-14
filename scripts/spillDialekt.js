@@ -3,32 +3,28 @@ const db = firebase.firestore();
 
 const dialekter = [{
     riktigOmraade: "Trøndelag",
-    lydfilSrc: "trondelag.mp3",
+    lydfilSrc: "media/audio/aww.mp3",
     lydtekst: "Æ e itj på båten!",
     riktigKoordinat: { lat: 59.7196527, lng: 10.7931863 },
-    maksScoreRadius: 50000
 },
 {
     riktigOmraade: "Fredrikstad",
-    lydfilSrc: "fredrikstad.mp3",
+    lydfilSrc: "media/audio/ding.mp3",
     lydtekst: "Biler og båtar!",
     riktigKoordinat: { lat: 62, lng: 8 },
-    maksScoreRadius: 50000
 },
 {
     riktigOmraade: "Stavanger",
-    lydfilSrc: "stavanger.mp3",
+    lydfilSrc: "media/audio/draw.mp3",
     lydtekst: "Stavangarrrr!",
     riktigKoordinat: { lat: 62, lng: 8 },
-    maksScoreRadius: 50000
 
 },
 {
     riktigOmraade: "Oslo",
-    lydfilSrc: "oslo.mp3",
+    lydfilSrc: "media/audio/feil.mp3",
     lydtekst: "Ossssslo vesst!",
     riktigKoordinat: { lat: 62, lng: 8 },
-    maksScoreRadius: 50000
 }
 ];
 let spillerID;
@@ -38,34 +34,31 @@ let antallPoeng = 0;
 let spillernavn;
 let scoreRunde = 0;
 let scoreliste = [];
-hentHighscores();
+let harSjekketSvar = false;
+oppdaterScoreBoard();
 function startSpill(e) {
     e.preventDefault();
-    spillerID = "A" + Math.floor(Math.random() * 10000000);
+    spillerID = "S" + Date.now();
+    console.log(spillerID);
     spillernavn = document.querySelector("input").value;
+
     document.querySelector("#registreringsContainer").style.display = "none";
     document.querySelector("#spillContainer").style.display = "flex";
     document.querySelector("#knappNeste").addEventListener("click", visNesteDialekt);
+
     document.querySelector("#knappSjekkSvar").addEventListener("click", sjekkSvar);
 
     lagDialektrekkefolge();
     aktivDialektIndex = -1;
     visNesteDialekt();
 }
-function hentHighscores() {
+function oppdaterScoreBoard() {
+    // Tømmer scoreboarden
     const containerliste = document.querySelectorAll(".highscoreContainer");
-    scoreliste = [];
     for (let i = 0; i < containerliste.length; i++) {
         containerliste[i].innerHTML = "";
     }
-    function callback() {
-        scoreliste.sort(compare);
-        for (let i = 0; i < 5; i++) {
-            leggTilPaaScoreBoard(scoreliste[i].spillernavn, scoreliste[i].score);
-        }
-        const plassering = finnPlassering();
-        document.querySelector("#scorePlassering").innerHTML = `Du kom på ${plassering}. plass blant alle som har spilt til nå!`;
-    }
+    scoreliste = [];
 
     let antallBehandledeEntries = 0;
     db.collection("highscores").get().then((querySnapshot) => {
@@ -76,9 +69,16 @@ function hentHighscores() {
                 ID: entry.data().ID
             };
             scoreliste.push(nyScore);
+
             antallBehandledeEntries++;
             if (antallBehandledeEntries === querySnapshot.size) {
-                callback();
+                // Alle scorene er lagt til i listen
+                scoreliste.sort(compare);
+                for (let i = 0; i < 5; i++) {
+                    leggTilPaaScoreBoard(scoreliste[i].spillernavn, scoreliste[i].score);
+                }
+                const plassering = finnPlassering();
+                document.querySelector("#scorePlassering").innerHTML = `Du kom på ${plassering}. plass blant alle som har spilt til nå!`;
             }
         });
     });
@@ -103,26 +103,6 @@ function hentHighscores() {
     }
 }
 function visNesteDialekt() {
-    if (aktivDialektIndex > -1) {
-        sjekkSvar();
-    }
-    clearOverlays();
-    harAvgittSvar = false;
-    valgtPosisjon = undefined;
-    kartLytter = map.addListener('click', (e) => {
-        if (!harAvgittSvar) {
-            valgtPosisjon = { lat: e.latLng.lat(), lng: e.latLng.lng() };
-            addMarker(valgtPosisjon, image, true);
-            document.querySelector("#knappSjekkSvar").disabled = "";
-        }
-    });
-    document.querySelector("audio").style.display = "block";
-    document.querySelector("#spillSvarPo").style.display = "none";
-    document.querySelector("#spillSvarPl").style.display = "none";
-    document.querySelector("#dialektTekst").style.display = "block";
-    document.querySelector("#knappSjekkSvar").disabled = true;
-    document.querySelector("#info").style.display = "block";
-
     aktivDialektIndex++;
     if (aktivDialektIndex === dialekter.length) {
         avsluttSpill();
@@ -131,6 +111,37 @@ function visNesteDialekt() {
     if (aktivDialektIndex === dialekter.length - 1) {
         document.querySelector("#knappNeste").innerHTML = "Fullfør spill";
     }
+    if (!harSjekketSvar) {
+        sjekkSvar();
+    }
+    harSjekketSvar = false;
+    clearOverlays();
+    harAvgittSvar = false;
+    valgtPosisjon = undefined;
+
+    map.addListener('click', (e) => {
+        if (!harAvgittSvar) {
+            valgtPosisjon = { lat: e.latLng.lat(), lng: e.latLng.lng() };
+            addMarker(valgtPosisjon, image, true);
+            document.querySelector("#knappSjekkSvar").disabled = "";
+        }
+    });
+
+    document.querySelector("#dialektTekst").innerHTML = dialekter[aktivDialektIndex].lydtekst;
+
+
+    // Viser relevante elementer
+    document.querySelector("audio").style.display = "block";
+    document.querySelector("#spillSvarPo").style.display = "none";
+    document.querySelector("#spillSvarPl").style.display = "none";
+    document.querySelector("#dialektTekst").style.display = "block";
+    document.querySelector("#knappSjekkSvar").disabled = true;
+    document.querySelector("#info").style.display = "block";
+
+    // Bytter lydfil
+    document.querySelector("#audioSrc").src = dialekter[aktivDialektIndex].lydfilSrc;
+    document.querySelector("#audioEl").load();
+    document.querySelector("#audioEl").play();
 }
 function lagDialektrekkefolge() {
     for (let i = 0; i < dialekter.length; i++) {
@@ -157,10 +168,16 @@ function lagDialektrekkefolge() {
     }
 }
 function sjekkSvar() {
+    harSjekketSvar = true;
     harAvgittSvar = true;
     addMarker(dialekter[aktivDialektIndex].riktigKoordinat, "", false);
-    const avstand = finnAvstand(dialekter[aktivDialektIndex].riktigKoordinat, valgtPosisjon);
-    scoreRunde = 5000 * Math.pow(avstand,0.97);
+    let avstand;
+    if (valgtPosisjon !== undefined) {
+        avstand = finnAvstand(dialekter[aktivDialektIndex].riktigKoordinat, valgtPosisjon);
+    } else {
+        avstand = Number.MAX_SAFE_INTEGER;
+    }
+    scoreRunde = Math.round(5000 * Math.exp(-avstand / 100000));
     if (scoreRunde < 0) {
         scoreRunde = 0;
     }
@@ -190,7 +207,7 @@ function avsluttSpill() {
         score: antallPoeng,
         ID: spillerID
     });
-    hentHighscores();
+    oppdaterScoreBoard();
 }
 
 function finnPlassering() {
@@ -205,9 +222,8 @@ let harAvgittSvar = false;
 let markers = [];
 let map;
 let valgtPosisjon = undefined;
-let kartLytter;
 function initMap() {
-    let startLocation = { lat: 66, lng: 15 };
+    const startLocation = { lat: 66, lng: 15 };
 
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 4.4,
@@ -215,7 +231,7 @@ function initMap() {
         disableDefaultUI: true
     });
 
-    kartLytter = map.addListener('click', (e) => {
+    map.addListener('click', (e) => {
         if (!harAvgittSvar) {
             valgtPosisjon = { lat: e.latLng.lat(), lng: e.latLng.lng() };
             addMarker(valgtPosisjon, image, true);
@@ -223,13 +239,12 @@ function initMap() {
         }
     });
 }
-var image = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
-// Adds a marker to the map and push to the array.
+const image = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
 function addMarker(location, ikon, clear) {
     if (clear === true) {
         clearOverlays();
     }
-    var marker = new google.maps.Marker({
+    const marker = new google.maps.Marker({
         position: location,
         map: map,
         icon: ikon
@@ -242,19 +257,17 @@ function clearOverlays() {
     }
     markers.length = 0;
 }
-var rad = function (x) {
+const rad = function (x) {
     return x * Math.PI / 180;
 };
 function finnAvstand(p1, p2) {
-    var R = 6378137; // Earth’s mean radius in meter
-    var dLat = rad(p2.lat - p1.lat);
-    var dLong = rad(p2.lng - p1.lng);
-    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    const R = 6378137; // Earth’s mean radius in meter
+    const dLat = rad(p2.lat - p1.lat);
+    const dLong = rad(p2.lng - p1.lng);
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
         Math.cos(rad(p1.lat)) * Math.cos(rad(p2.lat)) *
         Math.sin(dLong / 2) * Math.sin(dLong / 2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c;
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const d = R * c;
     return d; // returns the distance in meter
 };
-
-
