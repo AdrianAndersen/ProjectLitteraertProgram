@@ -7,9 +7,71 @@
     <!-- FIX FOR MOBILE ENHETER -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta charset="utf-8" />
-    <title></title>
+    <link href="css/admin.css" rel="stylesheet" />
+    <title>Adminside</title>
 </head>
 <body>
-
+    <main>
+        <h1>Statistikk</h1>
+        <h2>Alle spilleres gjetninger fra Dialektspillet!</h2>
+        <div id="markorPlassinger">
+            <div id="map"></div>
+        </div>
+        <h2>Fullstendig scoreboard</h2>
+        <div id="scoreboardContainer">
+            <div id="quizScoreContainer">
+                <div class="overskrift">
+                    <h2>Resultater fra quizen</h2>
+                    <h3>Spillernavn</h3>
+                    <h3>Score</h3>
+                </div>
+                <div id="scoreQuiz">
+                    <div>
+                        <h4>Person</h4>
+                        <p>Person</p>
+                    </div>
+                    <div>
+                        <h4>Person</h4>
+                        <p>Person</p>
+                    </div>
+                    <div>
+                        <h4>Person</h4>
+                        <p>Person</p>
+                    </div>
+                    <div>
+                        <h4>Person</h4>
+                        <p>Person</p>
+                    </div>
+                    <div>
+                        <h4>Person</h4>
+                        <p>Person</p>
+                    </div>
+                </div>
+            </div>
+            <div id="dialektScoreContainer">
+                <div class="overskrift">
+                    <h2>Resultater fra Dialektspillet</h2>
+                    <h3>Spillernavn</h3>
+                    <h3>Score</h3>
+                </div>
+                <div id="scoreDialekt"></div>
+            </div>
+        </div>
+    </main>
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyABij34xIHs_S4Om2TVhcKYOzlBOlTPodQ",
+            authDomain: "projectlitteraertprogram.firebaseapp.com",
+            databaseURL: "https://projectlitteraertprogram.firebaseio.com",
+            projectId: "projectlitteraertprogram",
+            storageBucket: "",
+            messagingSenderId: "551583996743"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="scripts/admin.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWLNpke1byBhE8LelkErkAX24bIvP_yr4&callback=initMap" async defer></script>
 </body>
 </html>

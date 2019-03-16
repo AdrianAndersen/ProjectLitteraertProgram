@@ -64,12 +64,11 @@
                 <div id="venstre">
                     <h2>Hvor snakkes dialekten?</h2>
                     <h4 id="totalScore">Din score: 0</h4>
-                    <p id="spillSvarPo">Du fikk n poeng denne runden.</p>
-                    <p id="spillSvarPl">Riktig plassinger for dialekten: </p>
+                    <p id="spillSvarPo"></p>
+                    <p id="spillSvarPl"></p>
                     <p id="dialektTekst">placeholder teksten som leses opp</p>
-                    <audio controls="controls">
-                        <source src="file.mp3" type="audio/mp3" />
-                        <source src="file.ogg" type="audio/ogg" />
+                    <audio id="audioEl" controls="controls">
+                        <source id="audioSrc" src="file.mp3" type="audio/mp3" />
                     </audio>
                     <p id="info">Sett en markør på kartet, for hvor du mener denne dialekten snakkes</p>
                     <div>
@@ -82,9 +81,15 @@
                 </div>
             </div>
             <div id="resultatContainer">
+<<<<<<< HEAD
                 <h3>Takk for at du spilte dialektspillet!</h3>
                 <p id="sluttScore">Din score ble: </p>
                 <p>Du kom på nte plass blant alle som har spilt spillet til nå!</p>
+=======
+                <h2>Takk for at du spilte dialektspillet!</h2>
+                <p id="sluttScore"></p>
+                <p id="scorePlassering"></p>
+>>>>>>> c514d9dc5a434bf8000d2f79aecb84d08c36ea4c
                 <h3>Topp 5 beste spillere</h3>
 
                 <div class="highscoreContainer"></div>
