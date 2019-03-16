@@ -276,7 +276,6 @@ function finnAvstand(p1, p2) {
     const d = R * c;
     return d; // returns the distance in meter
 };
-<<<<<<< HEAD
 
 
 
@@ -317,6 +316,5 @@ function footerTop() {
 
 mainTop();
 footerTop();
-=======
+
 document.querySelector("#form").addEventListener("submit", startSpill);
->>>>>>> c514d9dc5a434bf8000d2f79aecb84d08c36ea4c
