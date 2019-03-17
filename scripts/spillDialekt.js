@@ -301,7 +301,7 @@ function mainTop() {
   let navHeight = pxToNum(navCompHeight);
 
   // adjust margin top
-  main.style.setProperty('--mainTop', `${navHeight}px`);
+  main.style.setProperty('--mainTop', `${7.5*navHeight}px`);
 }
 
 function footerTop() {
