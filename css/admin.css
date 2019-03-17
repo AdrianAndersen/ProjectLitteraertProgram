@@ -42,9 +42,14 @@ main {
     display: flex;
     flex-direction: column;
 }
-.overskrift, #quizScoreContainer, #dialektScoreContainer, #scoreDialekt div, #scoreQuiz div {
+#dialektScoreContainer, #quizScoreContainer {
+    display: flex;
+    flex-direction: column;
+}
+.overskrift, #scoreDialekt div, #scoreQuiz div {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    border: 1px solid black;
 }
 #scoreDialekt, #scoreQuiz {
     height: 100%;
