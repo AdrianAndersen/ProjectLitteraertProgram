@@ -92,7 +92,7 @@ function rowNum() {
 
 function footerTop() {
   // hide footer from start view
-  footer.style.setProperty('--footerTop', `-${4*footerHeight}px`);
+  footer.style.setProperty('--footerTop', `-${2*footerHeight}px`);
 }
 
 

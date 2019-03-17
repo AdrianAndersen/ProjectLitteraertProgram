@@ -311,7 +311,7 @@ function footerTop() {
   let footerHeight = pxToNum(footerCompHeight);
 
   // hide footer from start view
-  footer.style.setProperty('--footerTop', `-${3*footerHeight}px`);
+  footer.style.setProperty('--footerTop', `-${2*footerHeight}px`);
 }
 
 mainTop();
