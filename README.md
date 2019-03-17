@@ -19,5 +19,7 @@ Github-prosjekt for litterært program i norskfaget.
 - [ ] Tekst om språkhistorie
 - [ ] Tekst om dialekter
 - [ ] Quiz om språkhistorie
-- [ ] Kart-quiz om dialekter(klar for styling og innlegging av innhold). 
-		Skal lage adminsside (status, statistikk, aktive spillere, alle sine markører, osv.))
+- [ ] Kart-quiz om dialekter(styling - bra, men overskriften ligger litt for høyt oppe, og noe tekst på scoreboarden har blitt skjult etter styling. 
+		+ styling mangler style for disabled-knapper (Sjekk svar)
+
+Skal lage adminsside (status, statistikk, aktive spillere, alle sine markører, osv.))
