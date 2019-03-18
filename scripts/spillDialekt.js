@@ -281,7 +281,7 @@ function mainTop() {
   let navHeight = pxToNum(navCompHeight);
 
   // adjust margin top
-  main.style.setProperty('--mainTop', `${navHeight}px`);
+  main.style.setProperty('--mainTop', `${7.5*navHeight}px`);
 }
 
 function footerTop() {
@@ -291,7 +291,7 @@ function footerTop() {
   let footerHeight = pxToNum(footerCompHeight);
 
   // hide footer from start view
-  footer.style.setProperty('--footerTop', `-${3*footerHeight}px`);
+  footer.style.setProperty('--footerTop', `-${2*footerHeight}px`);
 }
 
 mainTop();
