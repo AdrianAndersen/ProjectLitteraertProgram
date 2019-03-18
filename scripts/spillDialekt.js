@@ -18,24 +18,23 @@ const dialekter = [{
     riktigOmraade: "Stavanger",
     lydfilSrc: "media/audio/draw.mp3",
     lydtekst: "Stavangarrrr!",
-    riktigKoordinat: { lat: 62, lng: 8 },
+    riktigKoordinat: { lat: 62, lng: 40 },
 
 },
 {
     riktigOmraade: "Oslo",
     lydfilSrc: "media/audio/feil.mp3",
     lydtekst: "Ossssslo vesst!",
-    riktigKoordinat: { lat: 62, lng: 8 },
+    riktigKoordinat: { lat: 10, lng: 8 },
 }
 ];
 let spillerID;
-let rekkefolge = [];
 let finalRekkefolge = [];
 let aktivDialektIndex;
 let antallPoeng = 0;
 let spillernavn;
 let scoreRunde = 0;
-let scoreliste = [];
+let scorelisteDialekt = [];
 let harSjekketSvar = false;
 let harAvgittSvar = false;
 let markers = [];
@@ -45,7 +44,6 @@ oppdaterScoreBoard();
 function startSpill(e) {
     e.preventDefault();
     spillerID = "S" + Date.now();
-    console.log(spillerID);
     spillernavn = document.querySelector("input").value;
 
     document.querySelector("#registreringsContainer").style.display = "none";
@@ -54,7 +52,6 @@ function startSpill(e) {
 
     document.querySelector("#knappSjekkSvar").addEventListener("click", sjekkSvar);
 
-    lagDialektrekkefolge();
     aktivDialektIndex = -1;
     visNesteDialekt();
 }
@@ -64,7 +61,7 @@ function oppdaterScoreBoard() {
     for (let i = 0; i < containerliste.length; i++) {
         containerliste[i].innerHTML = "";
     }
-    scoreliste = [];
+    scorelisteDialekt = [];
 
     let antallBehandledeEntries = 0;
     db.collection("HSDialektspillet").get().then((querySnapshot) => {
@@ -74,14 +71,14 @@ function oppdaterScoreBoard() {
                 score: entry.data().score,
                 ID: entry.data().ID
             };
-            scoreliste.push(nyScore);
+            scorelisteDialekt.push(nyScore);
 
             antallBehandledeEntries++;
             if (antallBehandledeEntries === querySnapshot.size) {
                 // Alle scorene er lagt til i listen
-                scoreliste.sort(compare);
+                scorelisteDialekt.sort(compare);
                 for (let i = 0; i < 5; i++) {
-                    leggTilPaaScoreBoard(scoreliste[i].spillernavn, scoreliste[i].score);
+                    leggTilPaaScoreBoard(scorelisteDialekt[i].spillernavn, scorelisteDialekt[i].score);
                 }
                 const plassering = finnPlassering();
                 document.querySelector("#scorePlassering").innerHTML = `Du kom på ${plassering}. plass blant alle som har spilt til nå!`;
@@ -110,16 +107,20 @@ function oppdaterScoreBoard() {
 }
 function visNesteDialekt() {
     aktivDialektIndex++;
+
+    if (aktivDialektIndex === dialekter.length - 1) {
+        document.querySelector("#knappNeste").innerHTML = "Fullfør spill";
+    }
+
+    if (!harSjekketSvar) {
+        sjekkSvar();
+    }
+
     if (aktivDialektIndex === dialekter.length) {
         avsluttSpill();
         return;
     }
-    if (aktivDialektIndex === dialekter.length - 1) {
-        document.querySelector("#knappNeste").innerHTML = "Fullfør spill";
-    }
-    if (!harSjekketSvar) {
-        sjekkSvar();
-    }
+
     harSjekketSvar = false;
     clearOverlays();
     harAvgittSvar = false;
@@ -149,40 +150,20 @@ function visNesteDialekt() {
     document.querySelector("#audioEl").load();
     document.querySelector("#audioEl").play();
 }
-function lagDialektrekkefolge() {
-    for (let i = 0; i < dialekter.length; i++) {
-        rekkefolge.push(i);
-    }
-    rekkefolge = shuffle(rekkefolge);
-    function shuffle(array) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
-
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-
-            // Pick a remaining element...
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-
-            // And swap it with the current element.
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-        }
-
-        return array;
-    }
-}
 function sjekkSvar() {
+    let localIndex = aktivDialektIndex;
     harSjekketSvar = true;
     harAvgittSvar = true;
-    addMarker(dialekter[aktivDialektIndex].riktigKoordinat, "", false);
+    if (localIndex === dialekter.length) {
+        localIndex--;
+    }
+    addMarker(dialekter[localIndex].riktigKoordinat, "", false);
     let avstand;
     if (valgtPosisjon !== undefined) {
         finalRekkefolge.push(valgtPosisjon);
-        avstand = finnAvstand(dialekter[aktivDialektIndex].riktigKoordinat, valgtPosisjon);
+        avstand = finnAvstand(dialekter[localIndex].riktigKoordinat, valgtPosisjon);
     } else {
-        if (aktivDialektIndex !== 0) {
+        if (localIndex !== 0) {
             finalRekkefolge.push("NULL");
         }
         avstand = Number.MAX_SAFE_INTEGER;
@@ -191,7 +172,7 @@ function sjekkSvar() {
     if (scoreRunde < 0) {
         scoreRunde = 0;
     }
-
+    console.log(finalRekkefolge);
 
     antallPoeng += scoreRunde;
     document.querySelector("#totalScore").innerHTML = "Din score: " + antallPoeng;
@@ -199,7 +180,7 @@ function sjekkSvar() {
     const svarPoengEl = document.querySelector("#spillSvarPo");
     const svarPosisjonEl = document.querySelector("#spillSvarPl");
     svarPoengEl.innerHTML = `Du fikk ${scoreRunde} denne runden.`;
-    svarPosisjonEl.innerHTML = `Riktig plassing for denne dialekten: ${dialekter[aktivDialektIndex].riktigOmraade}.`;
+    svarPosisjonEl.innerHTML = `Riktig plassing for denne dialekten: ${dialekter[localIndex].riktigOmraade}.`;
     document.querySelector("audio").style.display = "none";
     svarPosisjonEl.style.display = "block";
     svarPoengEl.style.display = "block";
@@ -218,12 +199,11 @@ function avsluttSpill() {
         ID: spillerID,
         valgtePosisjoner: finalRekkefolge
     });
-    console.log(finalRekkefolge);
     oppdaterScoreBoard();
 }
 function finnPlassering() {
-    for (let i = 0; i < scoreliste.length; i++) {
-        if (spillerID === scoreliste[i].ID) {
+    for (let i = 0; i < scorelisteDialekt.length; i++) {
+        if (spillerID === scorelisteDialekt[i].ID) {
             return i + 1;
         }
     }

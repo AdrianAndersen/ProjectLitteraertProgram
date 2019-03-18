@@ -1,9 +1,12 @@
-"use strict";
+﻿"use strict";
 const db = firebase.firestore();
 
+// Riktige svar (Må opppdatteres etter at dialektene legges inn!!);
+
+const riktigesvar = ["Trøndelag", "Fredrikstad", "Stavanger", "Oslo"]; // Eksempel....
+
 let map;
-let aktiveMarkorer = 0;
-let resetVal;
+let aktivMarkorindex = 0;
 function initMap() {
     const initLocation = { lat: 65, lng: 15 };
     map = new google.maps.Map(document.getElementById('map'), {
@@ -11,21 +14,19 @@ function initMap() {
         center: initLocation
     });
 }
-let scoreliste = [];
+let scorelisteDialekt = [];
 let markers = [];
 function hentStats() {
     clearOverlays();
     markers = [];
-    scoreliste = [];
 
-    // T�mmer scoreboardene
+    document.querySelector("#riktigDialekt").innerHTML = "Riktig område for dialekt: " + riktigesvar[aktivMarkorindex];
+    // Tømmer scoreboardene
     document.querySelector("#scoreDialekt").innerHTML = "";
     document.querySelector("#scoreQuiz").innerHTML = "";
-    clearOverlays();
-
-
 
     db.collection("HSDialektspillet").get().then((querySnapshot) => {
+
         querySnapshot.forEach((entry) => {
             const nyScore = {
                 spillernavn: entry.data().spillernavn,
@@ -33,18 +34,17 @@ function hentStats() {
                 ID: entry.data().ID,
                 valgteSvar: entry.data().valgtePosisjoner
             };
-            scoreliste.push(nyScore);
+            scorelisteDialekt.push(nyScore);
         });
-        scoreliste.sort(compare);
-        resetVal = scoreliste[0].valgteSvar.length;
-        for (let i = 0; i < scoreliste.length; i++) {
-            leggTilPaaScoreBoard(scoreliste[i].spillernavn, scoreliste[i].score, "#scoreDialekt");
-            if (scoreliste[i].valgteSvar[aktiveMarkorer] !== undefined) {
-                addMarker(scoreliste[i].valgteSvar[aktiveMarkorer]);
+        scorelisteDialekt.sort(compare);
+
+        for (let i = 0; i < scorelisteDialekt.length; i++) {
+            leggTilPaaScoreBoard(scorelisteDialekt[i].spillernavn, scorelisteDialekt[i].score, "#scoreDialekt");
+            if (scorelisteDialekt[i].valgteSvar[aktivMarkorindex] !== "NULL") {
+                addMarker(scorelisteDialekt[i].valgteSvar[aktivMarkorindex]);
             }
         }
     });
-
     db.collection("HSQuiz").get().then((querySnapshot) => {
         let scoreliste = [];
         querySnapshot.forEach((entry) => {
@@ -79,7 +79,6 @@ function hentStats() {
         nyDiv.appendChild(nyttNavnEl);
         nyDiv.appendChild(nyttScoreEl);
     }
-
     function addMarker(location) {
         const marker = new google.maps.Marker({
             position: location,
@@ -94,11 +93,21 @@ function hentStats() {
         markers.length = 0;
     }
 }
-function endreAktiveMarkorer(endring) {
-    aktiveMarkorer = Math.abs((aktiveMarkorer + endring) % resetVal);
+
+document.querySelector("#knappTilbake").addEventListener("click", () => {
+    if (aktivMarkorindex === 0) {
+        aktivMarkorindex = scorelisteDialekt[0].valgteSvar.length - 1;
+    } else {
+        aktivMarkorindex--;
+    }
     hentStats();
-    console.log(aktiveMarkorer);
-}
-document.querySelector("#knappTilbake").addEventListener("click", () => { endreAktiveMarkorer(-1); });
-document.querySelector("#knappFrem").addEventListener("click", () => { endreAktiveMarkorer(1); });
+});
+document.querySelector("#knappFrem").addEventListener("click", () => {
+    if (aktivMarkorindex === scorelisteDialekt[0].valgteSvar.length - 1) {
+        aktivMarkorindex = 0;
+    } else {
+        aktivMarkorindex++;
+    }
+    hentStats();
+});
 hentStats();
