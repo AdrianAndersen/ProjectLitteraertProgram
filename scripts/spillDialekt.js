@@ -172,7 +172,6 @@ function sjekkSvar() {
     if (scoreRunde < 0) {
         scoreRunde = 0;
     }
-    console.log(finalRekkefolge);
 
     antallPoeng += scoreRunde;
     document.querySelector("#totalScore").innerHTML = "Din score: " + antallPoeng;

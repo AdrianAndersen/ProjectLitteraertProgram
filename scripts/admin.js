@@ -16,17 +16,38 @@ function initMap() {
 }
 let scorelisteDialekt = [];
 let markers = [];
-function hentStats() {
+function oppdaterMarkers() {
     clearOverlays();
     markers = [];
 
     document.querySelector("#riktigDialekt").innerHTML = "Riktig område for dialekt: " + riktigesvar[aktivMarkorindex];
-    // Tømmer scoreboardene
+
+    for (let i = 0; i < scorelisteDialekt.length; i++) {
+        if (scorelisteDialekt[i].valgteSvar[aktivMarkorindex] !== "NULL") {
+            addMarker(scorelisteDialekt[i].valgteSvar[aktivMarkorindex]);
+        }
+    }
+    function addMarker(location) {
+        const marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+        markers.push(marker);
+    }
+    function clearOverlays() {
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
+        }
+        markers.length = 0;
+    }
+}
+let henterData = false;
+function hentStats() {
     document.querySelector("#scoreDialekt").innerHTML = "";
     document.querySelector("#scoreQuiz").innerHTML = "";
 
     db.collection("HSDialektspillet").get().then((querySnapshot) => {
-
+        let scoreliste = [];
         querySnapshot.forEach((entry) => {
             const nyScore = {
                 spillernavn: entry.data().spillernavn,
@@ -34,16 +55,15 @@ function hentStats() {
                 ID: entry.data().ID,
                 valgteSvar: entry.data().valgtePosisjoner
             };
-            scorelisteDialekt.push(nyScore);
+            scoreliste.push(nyScore);
         });
-        scorelisteDialekt.sort(compare);
-
-        for (let i = 0; i < scorelisteDialekt.length; i++) {
-            leggTilPaaScoreBoard(scorelisteDialekt[i].spillernavn, scorelisteDialekt[i].score, "#scoreDialekt");
-            if (scorelisteDialekt[i].valgteSvar[aktivMarkorindex] !== "NULL") {
-                addMarker(scorelisteDialekt[i].valgteSvar[aktivMarkorindex]);
-            }
+        scoreliste.sort(compare);
+        oppdaterMarkers();
+        for (let i = 0; i < scoreliste.length; i++) {
+            leggTilPaaScoreBoard(scoreliste[i].spillernavn, scoreliste[i].score, "#scoreDialekt");
         }
+        scorelisteDialekt = scoreliste;
+        henterData = false;
     });
     db.collection("HSQuiz").get().then((querySnapshot) => {
         let scoreliste = [];
@@ -60,7 +80,9 @@ function hentStats() {
         for (let i = 0; i < scoreliste.length; i++) {
             leggTilPaaScoreBoard(scoreliste[i].spillernavn, scoreliste[i].score, "#scoreQuiz");
         }
+        henterData = false;
     });
+
     function compare(a, b) {
         if (a.score > b.score)
             return -1;
@@ -79,18 +101,16 @@ function hentStats() {
         nyDiv.appendChild(nyttNavnEl);
         nyDiv.appendChild(nyttScoreEl);
     }
-    function addMarker(location) {
-        const marker = new google.maps.Marker({
-            position: location,
-            map: map
-        });
-        markers.push(marker);
-    }
-    function clearOverlays() {
-        for (var i = 0; i < markers.length; i++) {
-            markers[i].setMap(null);
-        }
-        markers.length = 0;
+}
+
+function handleNyeData() {
+    if (!henterData) {
+        henterData = true;
+        hentStats();
+    } else {
+        setTimeout(() => {
+            handleNyeData();
+        }, 100);
     }
 }
 
@@ -100,7 +120,7 @@ document.querySelector("#knappTilbake").addEventListener("click", () => {
     } else {
         aktivMarkorindex--;
     }
-    hentStats();
+    oppdaterMarkers();
 });
 document.querySelector("#knappFrem").addEventListener("click", () => {
     if (aktivMarkorindex === scorelisteDialekt[0].valgteSvar.length - 1) {
@@ -108,6 +128,12 @@ document.querySelector("#knappFrem").addEventListener("click", () => {
     } else {
         aktivMarkorindex++;
     }
-    hentStats();
+    oppdaterMarkers();
 });
-hentStats();
+
+db.collection("HSDialektspillet").onSnapshot(() => {
+    handleNyeData();
+});
+db.collection("HSQuiz").onSnapshot(() => {
+    handleNyeData();
+});
