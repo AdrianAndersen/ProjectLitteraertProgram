@@ -1,3 +1,5 @@
+// jshint esversion: 6
+
 ﻿"use strict";
 const image = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
 const db = firebase.firestore();
