@@ -3,30 +3,74 @@ const image = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
 const db = firebase.firestore();
 
 const dialekter = [{
-    riktigOmraade: "Trøndelag",
-    lydfilSrc: "media/audio/aww.mp3",
-    lydtekst: "Æ e itj på båten!",
-    riktigKoordinat: { lat: 59.7196527, lng: 10.7931863 },
+    riktigOmraade: "Bergen",
+    lydfilSrc: "media/audio/bergen.mp3",
+    lydtekst: "USA er vår nærmeste allierte, og vårt samarbeid baserer seg på felles verdier, og på felles interesser. Vi ønsker å videreføre det gode samarbeidet. Og for regjeringen, så er det aller viktigste, å ivareta norske interesser. USA er viktig for norsk økonomi, for norske arbeidsplasser, og for norsk sikkerhet.",
+    riktigKoordinat: { lat: 60.3910, lng: 5.3261 }
 },
 {
-    riktigOmraade: "Fredrikstad",
-    lydfilSrc: "media/audio/ding.mp3",
-    lydtekst: "Biler og båtar!",
-    riktigKoordinat: { lat: 62, lng: 8 },
+    riktigOmraade: "Trondheim",
+    lydfilSrc: "media/audio/tronder.mp3",
+    lydtekst: "Nei, vi har ikke fått løs tampene vi på babord side, for der var flammen og der kom røyken ut. Så vi har ikke kommet båtløs fra ham, for han hadde satt fast tampen på babord side av oss, han....",
+    riktigKoordinat: { lat: 63.4305, lng: 10.3950 }
 },
 {
-    riktigOmraade: "Stavanger",
+    riktigOmraade: "Oslo øst", // Ikke ferdig
     lydfilSrc: "media/audio/draw.mp3",
     lydtekst: "Stavangarrrr!",
-    riktigKoordinat: { lat: 62, lng: 40 },
+    riktigKoordinat: { lat: 62.8, lng: 6 }
 
 },
 {
-    riktigOmraade: "Oslo",
-    lydfilSrc: "media/audio/feil.mp3",
-    lydtekst: "Ossssslo vesst!",
-    riktigKoordinat: { lat: 10, lng: 8 },
+    riktigOmraade: "Ålesund", // Ikke ferdig
+    lydfilSrc: "media/audio/draw.mp3",
+    lydtekst: "Stavangarrrr!",
+    riktigKoordinat: { lat: 62.8, lng: 6 }
+},
+{
+    riktigOmraade: "Fredrikstad", 
+    lydfilSrc: "media/audio/fredrikstad.mp3",
+    lydtekst: "Hallo fra den andre byen. Nå blir det sikkelig godt med gjensyn. En liten tur innom Strømstad, ...",
+    riktigKoordinat: { lat: 59.2201, lng: 10.9348 }
+},
+{
+    riktigOmraade: "Området rundt Hardangerfjorden",
+    lydfilSrc: "media/audio/hardangerfjorden.mp3",
+    lydtekst: "Det var vår båt og deres åre.",
+    riktigKoordinat: { lat: 60.3397, lng: 6.2888 }
+},
+{
+    riktigOmraade: "Sørlandet", // Ikke ferdig
+    lydfilSrc: "media/audio/draw.mp3",
+    lydtekst: "Stavangarrrr!",
+    riktigKoordinat: { lat: 62, lng: 40 }
+},
+{
+    riktigOmraade: "Nord-Norge", // Ikke ferdig
+    lydfilSrc: "media/audio/draw.mp3",
+    lydtekst: "Stavangarrrr!",
+    riktigKoordinat: { lat: 62, lng: 40 }
+
+},
+{
+    riktigOmraade: "Hallingdal", // Ikke ferdig
+    lydfilSrc: "media/audio/draw.mp3",
+    lydtekst: "Stavangarrrr!",
+    riktigKoordinat: { lat: 62, lng: 40 }
+},
+{
+    riktigOmraade: "Oslo vest", // Ikke ferdig
+    lydfilSrc: "media/audio/draw.mp3",
+    lydtekst: "Stavangarrrr!",
+    riktigKoordinat: { lat: 62, lng: 40 }
+},
+{
+    riktigOmraade: "Molde",
+    lydfilSrc: "media/audio/molde.mp3",
+    lydtekst: "Jeg synes maten var veldig god.",
+    riktigKoordinat: { lat: 62.7374, lng: 7.1588 }
 }
+
 ];
 let spillerID;
 let finalRekkefolge = [];
@@ -268,29 +312,29 @@ function finnAvstand(p1, p2) {
 /* ---------- SET MARGIN FOR MAIN AND FOOTER ---------- */
 
 function pxToNum(string) {
-  // remove 'px' at the end and turn string to number
-  return Number(string.slice(0, string.length - 2));
+    // remove 'px' at the end and turn string to number
+    return Number(string.slice(0, string.length - 2));
 }
 
 function mainTop() {
-  let nav = document.querySelector('nav');
-  let main = document.querySelector('main');
+    let nav = document.querySelector('nav');
+    let main = document.querySelector('main');
 
-  let navCompHeight = window.getComputedStyle(nav).height;
-  let navHeight = pxToNum(navCompHeight);
+    let navCompHeight = window.getComputedStyle(nav).height;
+    let navHeight = pxToNum(navCompHeight);
 
-  // adjust margin top
-  main.style.setProperty('--mainTop', `${7.5*navHeight}px`);
+    // adjust margin top
+    main.style.setProperty('--mainTop', `${7.5 * navHeight}px`);
 }
 
 function footerTop() {
-  let footer = document.querySelector('footer');
+    let footer = document.querySelector('footer');
 
-  let footerCompHeight = window.getComputedStyle(footer).height;
-  let footerHeight = pxToNum(footerCompHeight);
+    let footerCompHeight = window.getComputedStyle(footer).height;
+    let footerHeight = pxToNum(footerCompHeight);
 
-  // hide footer from start view
-  footer.style.setProperty('--footerTop', `-${2*footerHeight}px`);
+    // hide footer from start view
+    footer.style.setProperty('--footerTop', `-${2 * footerHeight}px`);
 }
 
 mainTop();
