@@ -1,3 +1,5 @@
+// jshint esversion: 6
+
 let dialketKjennetegn = [
     vestlandsk = {
         fylker: ["Aust-Agder", "Vest-Agder", "Rogaland", "Sogn og Fjordane", "Møre og Romsdal"],
@@ -68,4 +70,4 @@ let dialketKjennetegn = [
         skarreR: "Nei",
         bloteKonsonanter: "Nei"
     }
-]
+];

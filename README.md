@@ -19,7 +19,10 @@ Github-prosjekt for litterært program i norskfaget.
 - [ ] Tekst om språkhistorie
 - [ ] Tekst om dialekter
 - [ ] Quiz om språkhistorie
-- [ ] Kart-quiz om dialekter(styling - bra, men overskriften ligger litt for høyt oppe, og noe tekst på scoreboarden har blitt skjult etter styling. 
-		+ styling mangler style for disabled-knapper (Sjekk svar)
-
-Skal lage adminsside (status, statistikk, aktive spillere, alle sine markører, osv.))
+- [ ] Adminside (Ferdig, klar for styling)
+- [ ] Kart-quiz om dialekter TODO:
+	- Vi må lage og legge inn dialekter på siden.
+	- Styling fixes left: 
+		- overskrift delvis skjult når man skal skrive inn navn.
+		- h4 mangler styling på alle sider
+		- knapper med atributtet "disabled" må få egen style

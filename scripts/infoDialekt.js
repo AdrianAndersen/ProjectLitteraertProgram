@@ -6,7 +6,12 @@
 let nav = document.querySelector('nav');
 
 let main = document.querySelector('main');
+
 let infoDialekt = document.querySelector('#infoDialekt');
+let dialektHead = document.querySelector('#dialektHead');
+let dialektSide = document.querySelector('#dialektSide');
+let dialektMain = document.querySelector('#dialektMain');
+let allDialektMainCols = document.getElementsByClassName('dialektMainCol');
 
 let wrapBtnsDialekt = document.querySelector('#wrapBtnsDialekt');
 
@@ -30,58 +35,105 @@ let footerHeight = pxToNum(footerCompHeight);
 
 /* ---------- DATA ---------- */
 
+// empty object at start
 let data = [
   {
-    type: 'palatalisering',
-    desc: 'en eller annen slags forklaring på dette målmerket',
-    geo: 'nord, sør, øst, vest'
+    type: '',
+    fylker: '',
+    tjukkL: '',
+    palatalisering: '',
+    infinitiv: '',
+    svakeHunkjonnsord: '',
+    sterkeHunkjonnsord: '',
+    skarreR: '',
+    bloteKonsonanter: ''
   },
   {
-    type: 'tjukk l',
-    desc: 'en eller annen slags forklaring på dette målmerket',
-    geo: 'nord, sør, øst, vest'
+    type: 'vestlandsk',
+    fylker: ["Aust-Agder", "Vest-Agder", "Rogaland", "Sogn og Fjordane", "Møre og Romsdal"],
+    tjukkL: "Nei\n" + "Bortsett fra noen områder i Møre og Romsdal",
+    palatalisering: "Nei\n" + "Bortsett fra området nord for Sognefjorden",
+    infinitiv: "E-infinitiv i Agder og i Møre og Romsdal" + "A-infinitiv i Rogaland og Hordaland",
+    personligePronomen: "Mest \"eg/e/i\" i entall \n" +
+    "og \"me/mi\" i flertall",
+    svakeHunkjonnsord: "Mest -o/-å \n" +
+    "(eks:: \"klokkå\")\n" +
+    "Men en del -a i Agder og S og Fj\n",
+    sterkeHunkjonnsord: "Svært blandet.\n" +
+    "-a i sør og nord (\"eks.: \"boka\")\n" +
+    "Ellers -o/-å (kysten) \n" +
+    "eller -e/-i/-æ/-ei (innlandet)",
+    skarreR: "Ja.\n" +
+    "Minus området nord for Sognefjordane",
+    bloteKonsonanter: "Ja,\n" +
+    "på Agderkysten og i det meste av Rogaland. \n" +
+    "Ellers harde kons."
   },
   {
-    type: 'skarre-r',
-    desc: 'en eller annen slags forklaring på dette målmerket',
-    geo: 'nord, sør, øst, vest'
+    type: 'østlandsk',
+    fylker: ["Telemark", "Vestfold", "Østfold", "Akershus", "Buskerud", "Oppland", "Hedmark"],
+    tjukkL: "Ja\n" + "Bortsett fra Vest-Telemark",
+    palatalisering: "Nei\n" + "Bortsett fra Hedmark og nordlige Oppland",
+    infinitiv: "Kløyvd infinitiv\n" +
+    "a-ending i noen verb.\n" +
+    "e-ending i de andre.",
+    personligePronomen: "Lavlandet har mest \"jeg/je\" og \"vi/ve\"\n" +
+    "Fjellbygdene i vest følger Vestlandsk.\n" +
+    "Nordlige Oppland har flertall \"oss\".",
+    svakeHunkjonnsord: "Bare -a (eks.: \"klokka\")",
+    sterkeHunkjonnsord: "Mest -a.\n" +
+    "Men -e/-i/-æ/-ei i fjellbygdene i vest.",
+    skarreR: "Nei",
+    bloteKonsonanter: "Nei"
   },
   {
-    type: 'apokope',
-    desc: 'en eller annen slags forklaring på dette målmerket',
-    geo: 'nord, sør, øst, vest'
+    type: 'trøndsk',
+    fylker: ["Møre og Romsdal", "Sør-Trøndelag", "Nord-Trøndelag"],
+    tjukkL: "Ja",
+    palatalisering: "Ja",
+    infinitiv: "Kløyvd infinitiv\n" +
+    "a- eller å-ending i noen verb.\n" +
+    "Ingen ending i de andre (apokope).",
+    personligePronomen: "Svært vekslende",
+    svakeHunkjonnsord: "Mest -a\n" +
+    "Men noe -o/-å på kysten sør for Trondh.fjorden",
+    sterkeHunkjonnsord: "Bare -a",
+    skarreR: "Nei",
+    bloteKonsonanter: "Nei"
   },
   {
-    type: 'bløte konsonanter',
-    desc: 'en eller annen slags forklaring på dette målmerket',
-    geo: 'nord, sør, øst, vest'
-  },
-  {
-    type: 'nektingsadverbet "ikke"',
-    desc: 'en eller annen slags forklaring på dette målmerket',
-    geo: 'nord, sør, øst, vest'
-  },
-  {
-    type: 'personlig pronomen',
-    desc: 'en eller annen slags forklaring på dette målmerket',
-    geo: 'nord, sør, øst, vest'
-  },
-  {
-    type: 'målmerke 8',
-    desc: 'en eller annen slags forklaring på dette målmerket',
-    geo: 'nord, sør, øst, vest'
-  },
-  {
-    type: 'målmerke 9',
-    desc: 'en eller annen slags forklaring på dette målmerket',
-    geo: 'nord, sør, øst, vest'
-  },
-  {
-    type: 'målmerke 10',
-    desc: 'en eller annen slags forklaring på dette målmerket',
-    geo: 'nord, sør, øst, vest'
-  },
+    type: 'nordnorsk',
+    fylker: ["Nordland", "Troms", "Finnmark"],
+    tjukkL: "Nei\n" +
+    "Bortsett fra i det meste av Nordland og i Bardu og Målselv",
+    palatalisering: "Ja",
+    infinitiv: "E-infinitiv.\n" +
+    "Men ending forsvinner i alle eller de fleste verb i Nordland.\n" +
+    "Kløyvd inf. i Bardu og Målselv.",
+    personligePronomen: "Mest \"æg/æ\" i entall\n" +
+    "og \"vi/ve\" i flertall",
+    svakeHunkjonnsord: "Mest -a\n" +
+    "Minus Nordland hvor det veksler svært.",
+    sterkeHunkjonnsord: "Bare -a",
+    skarreR: "Nei",
+    bloteKonsonanter: "Nei"
+  }
 ];
+
+let merker = [
+  `fylker`,
+  `tjukk l`,
+  `palatalisering`,
+  `infinitiv`,
+  `personlig \n pronomen`,
+  `svake \n hunkjønnsord`,
+  `sterke \n hunkjønnsord`,
+  `skarre-r`,
+  `bløte \n konsonanter`
+];
+
+// get array of object entries
+let arrKeys = Object.keys(data[0]);
 
 let dialekter = [
   'første',
@@ -121,6 +173,101 @@ function mainTop() {
 function rowNum() {
   // adjust rows in info text
   infoDialekt.style.setProperty('--rowDialekt', `${data.length/2}`);
+}
+
+
+
+
+
+/* ---------- SET GRID FOR DIALEKT INFO ---------- */
+
+function infoDialektGrid() {
+
+  // style css grid
+  infoDialekt.style.setProperty('--rowDialekt', `${merker.length}`);
+  infoDialekt.style.setProperty('--colDialekt', `${data.length}`);
+
+  dialektSide.style.setProperty('--rowDialekt', `${merker.length}`);
+
+  dialektHead.style.setProperty('--colDialekt', `${data.length}`);
+
+  dialektMain.style.setProperty('--colDialekt', `${data.length}`);
+
+
+  for (let i = 0; i < allDialektMainCols.length; i++) {
+    allDialektMainCols[i].style.setProperty('--rowDialekt', `${merker.length}`);
+  }
+
+}
+
+
+
+
+
+/* ---------- INSERT DATA ---------- */
+
+function insertDialektData() {
+
+  data.forEach(elem => {
+    // table head
+    dialektHead.innerHTML += `
+      <div class="centerAll">
+        <h4>${elem.type}</h4>
+      </div>
+    `;
+
+    // table main
+    dialektMain.innerHTML += `
+      <div class="dialektMainCol"></div>
+    `;
+
+    // table main cols data
+    /*
+    allDialektMainCols.forEach(col => {
+      elem.forEach(entry => {
+        col.innerHTML += `
+          <div>${entry}</div>
+        `;
+      });
+    });
+    */
+
+    /*
+    for (let i = 0; i < allDialektMainCols.length; i++) {
+      for (let k = 0; k < elem.length; k++) {
+        allDialektMainCols[i].innerHTML += `
+          <div class="text">
+            <p>${elem[k]}</p>
+          </div>
+        `;
+      }
+    }
+    */
+
+    console.log(Array.from(elem));
+
+    for (let i = 0; i < allDialektMainCols.length; i++) {
+      allDialektMainCols[i].innerHTML += `
+        <div class="text">
+          <p>hey</p>
+        </div>
+      `;
+    }
+
+  });
+
+
+  // table side
+  merker.forEach(merke => {
+    dialektSide.innerHTML += `
+      <div class="centerV">
+        <h5>${merke}</h5>
+      </div>
+    `;
+  });
+
+  console.log('insertDialektData');
+
 }
 
 
@@ -200,8 +347,10 @@ function insertData() {
 /* ---------- REGISTER FUNCTIONS ---------- */
 
 mainTop();
-rowNum();
+// rowNum();
+infoDialektGrid();
 colNum();
 footerTop();
 
-insertData();
+// insertData();
+insertDialektData();
