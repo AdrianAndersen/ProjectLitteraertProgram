@@ -17,17 +17,11 @@ const dialekter = [{
     riktigKoordinat: { lat: 63.4305, lng: 10.3950 }
 },
 {
-    riktigOmraade: "Oslo øst", // Ikke ferdig
-    lydfilSrc: "media/audio/draw.mp3",
-    lydtekst: "Stavangarrrr!",
-    riktigKoordinat: { lat: 62.8, lng: 6 }
+    riktigOmraade: "Grønland / Oslo Øst", 
+    lydfilSrc: "media/audio/gronland.mp3",
+    lydtekst: "...",
+    riktigKoordinat: { lat: 59.912521, lng: 10.762042 }
 
-},
-{
-    riktigOmraade: "Ålesund", // Ikke ferdig
-    lydfilSrc: "media/audio/draw.mp3",
-    lydtekst: "Stavangarrrr!",
-    riktigKoordinat: { lat: 62.8, lng: 6 }
 },
 {
     riktigOmraade: "Fredrikstad", 
@@ -42,29 +36,29 @@ const dialekter = [{
     riktigKoordinat: { lat: 60.3397, lng: 6.2888 }
 },
 {
-    riktigOmraade: "Sørlandet", // Ikke ferdig
-    lydfilSrc: "media/audio/draw.mp3",
-    lydtekst: "Stavangarrrr!",
-    riktigKoordinat: { lat: 62, lng: 40 }
+    riktigOmraade: "Sørlandet",
+    lydfilSrc: "media/audio/sorlandet.mp3",
+    lydtekst: "Regjeringa! Regjeringa! Regjerna skal det være. Det er den første lyden som forsvinner. Han er flau han. Han er flau over dialekten sin. Det er en skam. Han er en skam for landsdelen.",
+    riktigKoordinat: { lat: 58.154742, lng: 8.017901 }
 },
 {
-    riktigOmraade: "Nord-Norge", // Ikke ferdig
-    lydfilSrc: "media/audio/draw.mp3",
+    riktigOmraade: "Tromsø", // Ikke ferdig
+    lydfilSrc: "media/audio/tromso.mp3",
     lydtekst: "Stavangarrrr!",
-    riktigKoordinat: { lat: 62, lng: 40 }
+    riktigKoordinat: { lat: 69.649352, lng: 18.956052 }
 
 },
 {
-    riktigOmraade: "Hallingdal", // Ikke ferdig
-    lydfilSrc: "media/audio/draw.mp3",
-    lydtekst: "Stavangarrrr!",
-    riktigKoordinat: { lat: 62, lng: 40 }
+    riktigOmraade: "Hallingdal", 
+    lydfilSrc: "media/audio/hallingdal.mp3",
+    lydtekst: "Det fineset ordet jeg kjenner, det må være kjake.",
+    riktigKoordinat: { lat: 60.711305, lng: 8.942342 }
 },
 {
-    riktigOmraade: "Oslo vest", // Ikke ferdig
-    lydfilSrc: "media/audio/draw.mp3",
-    lydtekst: "Stavangarrrr!",
-    riktigKoordinat: { lat: 62, lng: 40 }
+    riktigOmraade: "Nordstrand",
+    lydfilSrc: "media/audio/nordstrand.mp3",
+    lydtekst: "Jeg har en moped som framkomstmiddel, en vespa. Det er veldig kjekt. Jeg synes det er slitsomt å stå som en sardinboks på en trikk.",
+    riktigKoordinat: { lat: 59.879181, lng: 10.790032 }
 },
 {
     riktigOmraade: "Molde",
