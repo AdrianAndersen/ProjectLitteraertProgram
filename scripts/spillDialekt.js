@@ -38,13 +38,13 @@ const dialekter = [{
 {
     riktigOmraade: "Sørlandet",
     lydfilSrc: "media/audio/sorlandet.mp3",
-    lydtekst: "Regjeringa! Regjeringa! Regjerna skal det være. Det er den første lyden som forsvinner. Han er flau han. Han er flau over dialekten sin. Det er en skam. Han er en skam for landsdelen.",
+    lydtekst: "Det er ikke noe problem altså. Men hvis du skal ut å fiske makrel, så må du nok flytte den.",
     riktigKoordinat: { lat: 58.154742, lng: 8.017901 }
 },
 {
-    riktigOmraade: "Tromsø", // Ikke ferdig
+    riktigOmraade: "Tromsø", 
     lydfilSrc: "media/audio/tromso.mp3",
-    lydtekst: "Stavangarrrr!",
+    lydtekst: "Regjeringa! Regjeringa! Regjerna skal det være.Det er den første lyden som forsvinner.Han er flau han.Han er flau over dialekten sin.Det er en skam.Han er en skam for landsdelen.",
     riktigKoordinat: { lat: 69.649352, lng: 18.956052 }
 
 },
