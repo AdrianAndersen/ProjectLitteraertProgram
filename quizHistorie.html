@@ -11,16 +11,57 @@
     <title></title>
 </head>
 <body>
+    <h1>Quiz</h1>
+    <div class="skjemaDiv">
+        <form id="skjema">
+            <input id="navn" type="text" required>
+            <button type="submit">Gay</button>
+        </form>
+    </div>
     <div class="innpakning">
-        <h1>Quiz</h1>
+    </div>
+    <div id="endScreen">
+        <h1>GAME OVER</h1>
+        <p id="dinScore"></p>
     </div>
 </body>
-
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyABij34xIHs_S4Om2TVhcKYOzlBOlTPodQ",
+            authDomain: "projectlitteraertprogram.firebaseapp.com",
+            databaseURL: "https://projectlitteraertprogram.firebaseio.com",
+            projectId: "projectlitteraertprogram",
+            storageBucket: "",
+            messagingSenderId: "551583996743"
+        };
+        firebase.initializeApp(config);
+    </script>
 <script>
     // DOM
+        let navnEl = document.querySelector('#navn');
         let innpakningTxt = document.querySelector(".innpakning");
+        let spillernavn;
+        let antallPoeng;
+        let skjemaDivEl = document.querySelector('.skjemaDiv');
+        let endScreenEl = document.querySelector('#endScreen');
+
+
+        document.querySelector("#skjema").addEventListener("submit", (e) => {
+            e.preventDefault();
+            skjemaDivEl.style.display = "none";
+            innpakningTxt.style.display = "block";
+            flytt();
+            spillernavn=navnEl.value;
+        });
 
         let listeMedSpørsmål = [
+                        {
+                spørsmål: "",
+                alternativer: [""],
+                fasit: [""]
+            },
             {
                 spørsmål: "Spørsmål 1",
                 alternativer: ["Riktig", "Galt", "Galt", "Galt"],
@@ -43,6 +84,8 @@
             }
             
         ];
+        
+        let tekstboksListe;
 
         function leggeTilSpørsmål(spørsmålObjekt) {
 
@@ -77,6 +120,9 @@
             }
             // Legger til spørsmålet til DOM
             innpakningTxt.appendChild(spørsmålTxt);
+
+            tekstboksListe = document.querySelectorAll(".align");
+
         }
 
 
@@ -85,7 +131,7 @@
         }
 
 
-        let antallPoeng = 0;
+        antallPoeng = 0;
 
         function finnPoeng(event) {
 
@@ -104,7 +150,64 @@
                 element.removeEventListener("click", finnPoeng);
             }
             console.log(antallPoeng);
+
+            flytt();
             
         };
+
+    //FLYTTE TING REEEEEEEEEEE
+
+    let tid = 4000;
+    let tekstBredde = 100;
+
+    //Timingfunction for animasjonene
+        let timing = {
+            duration: tid / 4,
+            easing: "linear",
+            fill: "forwards"
+        }
+    
+    let innFraHoyre = [
+            { left: `${tekstBredde}vw` },
+            { left: 0 }
+        ];
+
+    let utTilVenstre = [
+            { left: 0 },
+            { left: `${-tekstBredde}vw` }
+        ];
+    
+    let tekstIndeks = 0;
+
+    // Funksjon som bytter bilde og tekst
+        function flytt() {
+            if (tekstIndeks === listeMedSpørsmål.length-1) {
+                avsluttSpill();
+                console.log("Spillet er avsluttet");
+                return;
+                
+            }
+            console.log("y e et");
+            tekstboksListe[tekstIndeks].animate(utTilVenstre, timing);
+            let tempIndex = tekstIndeks;
+            tekstIndeks = (tekstIndeks + 1) % tekstboksListe.length;
+            tekstboksListe[tekstIndeks].style.display = "block";
+            tekstboksListe[tekstIndeks].animate(innFraHoyre, timing);
+            setTimeout(() => {
+                tekstboksListe[tempIndex].style.display = "none";
+            }, tid);
+        }
+
+    const db = firebase.firestore();
+
+        function avsluttSpill() {
+                db.collection("HSQuiz").add({
+                spillernavn: spillernavn,
+                score: antallPoeng
+            });
+
+            dinScoreEl.innerHTML = `Din score ble ${antallPoeng} poeng!`
+        }
+
 </script>
 </html>
