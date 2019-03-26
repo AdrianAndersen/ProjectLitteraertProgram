@@ -4,12 +4,107 @@
 <head>
     <link rel="shortcut icon" href="favicon/favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/quizHistorie.css">
     <!-- FIX FOR MOBILE ENHETER -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta charset="utf-8" />
     <title></title>
 </head>
 <body>
-
+    <div class="innpakning">
+        <h1>Quiz</h1>
+    </div>
 </body>
+
+<script>
+    // DOM
+        let innpakningTxt = document.querySelector(".innpakning");
+
+        let listeMedSpørsmål = [
+            {
+                spørsmål: "Spørsmål 1",
+                alternativer: ["Riktig", "Galt", "Galt", "Galt"],
+                fasit: ["riktig", "galt", "galt", "galt"]
+            },
+            {
+                spørsmål: "Spørsmål 2",
+                alternativer: ["Galt", "Galt", "Riktig", "Galt"],
+                fasit: ["galt", "galt", "riktig", "galt"]
+            }, 
+            {
+                spørsmål: "Spørsmål 3",
+                alternativer: ["Riktig", "Galt", "Galt", "Galt"],
+                fasit: ["riktig", "galt", "galt", "galt"]
+            }, 
+            {
+                spørsmål: "Spørsmål 4",
+                alternativer: ["Riktig", "Galt", "Galt", "Galt"],
+                fasit: ["riktig", "galt", "galt", "galt"]
+            }
+            
+        ];
+
+        function leggeTilSpørsmål(spørsmålObjekt) {
+
+            console.log("legger in spørsmål", spørsmålObjekt);
+
+            // Lager et p-element som inneholder spørsmålet
+            let spørsmålTxt = document.createElement("div");
+            spørsmålTxt.className = "align";
+
+            // Skriver spørsmålet
+            spørsmålTxt.innerHTML += `<h3>${spørsmålObjekt.spørsmål}</h3>`;
+
+            // Henter ut alternativene
+            let alternativer = spørsmålObjekt.alternativer;
+            let fasit = spørsmålObjekt.fasit;
+            let innpakningDiv = document.createElement("div");
+            innpakningDiv.className = "innpakningDivClass";
+
+            for (let i = 0; i < alternativer.length; i++) {
+                // Lager et input-element
+                let nyDiv = document.createElement("div");
+
+                nyDiv.dataset.option = `${fasit[i]}`;
+
+                nyDiv.className = "boks";
+                // Legger til checkbox i foreldreelementet (DOM)
+                innpakningDiv.appendChild(nyDiv);
+                spørsmålTxt.appendChild(innpakningDiv);
+                // Legger til alternativet (tekst)
+                nyDiv.innerHTML += `${alternativer[i]}<br>`;
+                nyDiv.addEventListener("click", finnPoeng);
+            }
+            // Legger til spørsmålet til DOM
+            innpakningTxt.appendChild(spørsmålTxt);
+        }
+
+
+        for (let i = 0; i < listeMedSpørsmål.length; i++) {
+            leggeTilSpørsmål(listeMedSpørsmål[i]);
+        }
+
+
+        let antallPoeng = 0;
+
+        function finnPoeng(event) {
+
+            let div = event.target;
+            if (div.dataset.option === "riktig") {
+                antallPoeng++;
+            } else {
+
+            }
+
+            let liste = div.parentElement.childNodes;
+
+            for (let i = 0; i < liste.length; i++) {
+                let element = liste[i];
+                
+                element.removeEventListener("click", finnPoeng);
+            }
+            console.log(antallPoeng);
+            
+        };
+</script>
 </html>
