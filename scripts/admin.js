@@ -1,9 +1,7 @@
 ﻿"use strict";
 const db = firebase.firestore();
 
-// Riktige svar (Må opppdatteres etter at dialektene legges inn!!);
-
-const riktigesvar = ["Trøndelag", "Fredrikstad", "Stavanger", "Oslo"]; // Eksempel....
+const riktigesvar = ["Bergen", "Trondheim", "Grønland / Oslo Øst", "Fredrikstad", "Området rundt Hardangerfjorden", "Sørlandet", "Tromsø", "Hallingdal", "Nordstrand", "Molde"]; 
 
 let map;
 let aktivMarkorindex = 0;
@@ -71,8 +69,6 @@ function hentStats() {
             const nyScore = {
                 spillernavn: entry.data().spillernavn,
                 score: entry.data().score,
-                ID: entry.data().ID,
-                valgteSvar: valgtePosisjoner
             };
             scoreliste.push(nyScore);
         });
