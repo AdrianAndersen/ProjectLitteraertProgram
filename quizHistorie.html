@@ -4,12 +4,214 @@
 <head>
     <link rel="shortcut icon" href="favicon/favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/quizHistorie.css">
     <!-- FIX FOR MOBILE ENHETER -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta charset="utf-8" />
     <title></title>
 </head>
 <body>
-
+    <h1>Quiz</h1>
+    <div class="skjemaDiv">
+        <form id="skjema">
+            <input id="navn" type="text" required>
+            <button class="coolButton" type="submit">Gay</button>
+        </form>
+    </div>
+    <div class="innpakning">
+    </div>
+    <div id="endScreen">
+        <h1>N i g g e r s a r e g a y</h1>
+        <p id="dinScore"></p>
+    </div>
 </body>
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyABij34xIHs_S4Om2TVhcKYOzlBOlTPodQ",
+            authDomain: "projectlitteraertprogram.firebaseapp.com",
+            databaseURL: "https://projectlitteraertprogram.firebaseio.com",
+            projectId: "projectlitteraertprogram",
+            storageBucket: "",
+            messagingSenderId: "551583996743"
+        };
+        firebase.initializeApp(config);
+    </script>
+<script>
+    // DOM
+        let navnEl = document.querySelector('#navn');
+        let innpakningTxt = document.querySelector(".innpakning");
+        let spillernavn;
+        let antallPoeng;
+        let skjemaDivEl = document.querySelector('.skjemaDiv');
+        let endScreenEl = document.querySelector('#endScreen');
+        let dinScoreEl = document.querySelector('#dinScore');
+
+
+        document.querySelector("#skjema").addEventListener("submit", (e) => {
+            e.preventDefault();
+            skjemaDivEl.style.display = "none";
+            innpakningTxt.style.display = "block";
+            flytt();
+            spillernavn=navnEl.value;
+        });
+
+        let listeMedSpørsmål = [
+                        {
+                spørsmål: "",
+                alternativer: [""],
+                fasit: [""]
+            },
+            {
+                spørsmål: "Spørsmål 1",
+                alternativer: ["Riktig", "Galt", "Galt", "Galt"],
+                fasit: ["riktig", "galt", "galt", "galt"]
+            },
+            {
+                spørsmål: "Spørsmål 2",
+                alternativer: ["Galt", "Galt", "Riktig", "Galt"],
+                fasit: ["galt", "galt", "riktig", "galt"]
+            }, 
+            {
+                spørsmål: "Spørsmål 3",
+                alternativer: ["Riktig", "Galt", "Galt", "Galt"],
+                fasit: ["riktig", "galt", "galt", "galt"]
+            }, 
+            {
+                spørsmål: "Spørsmål 4",
+                alternativer: ["Riktig", "Galt", "Galt", "Galt"],
+                fasit: ["riktig", "galt", "galt", "galt"]
+            }
+            
+        ];
+        
+        let tekstboksListe;
+
+        function leggeTilSpørsmål(spørsmålObjekt) {
+
+            console.log("legger in spørsmål", spørsmålObjekt);
+
+            // Lager et p-element som inneholder spørsmålet
+            let spørsmålTxt = document.createElement("div");
+            spørsmålTxt.className = "align";
+
+            // Skriver spørsmålet
+            spørsmålTxt.innerHTML += `<h3>${spørsmålObjekt.spørsmål}</h3>`;
+
+            // Henter ut alternativene
+            let alternativer = spørsmålObjekt.alternativer;
+            let fasit = spørsmålObjekt.fasit;
+            let innpakningDiv = document.createElement("div");
+            innpakningDiv.className = "innpakningDivClass";
+
+            for (let i = 0; i < alternativer.length; i++) {
+                // Lager et input-element
+                let nyDiv = document.createElement("div");
+
+                nyDiv.dataset.option = `${fasit[i]}`;
+
+                nyDiv.className = "boks";
+                // Legger til checkbox i foreldreelementet (DOM)
+                innpakningDiv.appendChild(nyDiv);
+                spørsmålTxt.appendChild(innpakningDiv);
+                // Legger til alternativet (tekst)
+                nyDiv.innerHTML += `${alternativer[i]}<br>`;
+                nyDiv.addEventListener("click", finnPoeng);
+            }
+            // Legger til spørsmålet til DOM
+            innpakningTxt.appendChild(spørsmålTxt);
+
+            tekstboksListe = document.querySelectorAll(".align");
+
+        }
+
+
+        for (let i = 0; i < listeMedSpørsmål.length; i++) {
+            leggeTilSpørsmål(listeMedSpørsmål[i]);
+        }
+
+
+        antallPoeng = 0;
+
+        function finnPoeng(event) {
+
+            let div = event.target;
+            if (div.dataset.option === "riktig") {
+                antallPoeng++;
+            } else {
+
+            }
+
+            let liste = div.parentElement.childNodes;
+
+            for (let i = 0; i < liste.length; i++) {
+                let element = liste[i];
+                
+                element.removeEventListener("click", finnPoeng);
+            }
+            console.log(antallPoeng);
+
+            setTimeout("flytt()", 500);
+            
+        };
+
+    //FLYTTE TING REEEEEEEEEEE
+
+    let tid = 4000;
+    let tekstBredde = 100;
+
+    //Timingfunction for animasjonene
+        let timing = {
+            duration: tid / 4,
+            easing: "linear",
+            fill: "forwards"
+        }
+    
+    let innFraHoyre = [
+            { left: `${tekstBredde}vw` },
+            { left: 0 }
+        ];
+
+    let utTilVenstre = [
+            { left: 0 },
+            { left: `${-tekstBredde}vw` }
+        ];
+    
+    let tekstIndeks = 0;
+
+    // Funksjon som bytter bilde og tekst
+        function flytt() {
+            if (tekstIndeks === listeMedSpørsmål.length-1) {
+                avsluttSpill();
+                console.log("Spillet er avsluttet");
+                return;
+                
+            }
+            console.log("y e et");
+            tekstboksListe[tekstIndeks].animate(utTilVenstre, timing);
+            let tempIndex = tekstIndeks;
+            tekstIndeks = (tekstIndeks + 1) % tekstboksListe.length;
+            tekstboksListe[tekstIndeks].style.display = "block";
+            tekstboksListe[tekstIndeks].animate(innFraHoyre, timing);
+            setTimeout(() => {
+                tekstboksListe[tempIndex].style.display = "none";
+            }, tid);
+        }
+
+    const db = firebase.firestore();
+
+        function avsluttSpill() {
+                db.collection("HSQuiz").add({
+                spillernavn: spillernavn,
+                score: antallPoeng
+            });
+
+            innpakningTxt.style.display = "none";
+            endScreenEl.style.display = "block";
+
+            dinScoreEl.innerHTML = `Din score ble ${antallPoeng} poeng!`
+        }
+
+</script>
 </html>

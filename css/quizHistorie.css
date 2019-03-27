@@ -1,3 +1,112 @@
-﻿body
-{
+﻿/*Gay ccs for gay quiz*/
+.align {
+    position: absolute;
+    border: solid yellow 5px;  
+    width: 100vw;
+    height: 100vh;
+    display: none;
 }
+
+
+
+.boks {
+    width: 100%;
+    height: 100%;
+    color: #fafaf8;
+    border: none;
+    background-color: #00DBDE;
+    background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+    border-radius: 50px;
+    padding: 0.2rem 1rem 0.2rem 1rem;
+    font-size: 0.8rem;
+    transition: ease-in-out 0.25s;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    font-size: 4rem;
+} 
+
+.boks::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #FC00FF;
+    background-image: linear-gradient(90deg, #FC00FF 0%, #00DBDE 100%);
+    border-radius: 50px;
+    z-index: -1;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+  }
+
+  .boks:hover::before {
+    opacity: 1;
+  }
+  
+  .boks:active {
+    transform: translateY(0.2rem);
+  }
+
+
+
+
+.innpakningDivClass {
+    border: solid red 2px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    width: 100%;
+    height: 75vh;
+    
+}
+
+body {
+    overflow: hidden;
+}
+
+.innpakning {
+    display: none;
+}
+
+#endScreen {
+    display: none;
+}
+
+.coolButton {
+    color: #fafaf8;
+    border: none;
+    background-color: #00DBDE;
+    background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+    border-radius: 5px;
+    padding: 0.2rem 1rem 0.2rem 1rem;
+    font-size: 0.8rem;
+    transition: ease-in-out 0.25s;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Fade til ok knappene*/
+  .coolButton::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #FC00FF;
+    background-image: linear-gradient(90deg, #FC00FF 0%, #00DBDE 100%);
+    border-radius: 5px;
+    z-index: -1;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+  }
+  
+  .coolButton:hover::before {
+    opacity: 1;
+  }
+  
+  .coolButton:active {
+    transform: translateY(0.2rem);
+  }
