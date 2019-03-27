@@ -19,10 +19,14 @@
         </form>
     </div>
     <div class="innpakning">
+        <div class="progressContainer">
+            <div class="progressBar"></div>
+        </div>
     </div>
     <div id="endScreen">
-        <h1>N i g g e r s a r e g a y</h1>
+        <h1>Spill ferdig!</h1>
         <p id="dinScore"></p>
+        <div class="highscoreContainer"></div>
     </div>
 </body>
     <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
@@ -43,10 +47,11 @@
         let navnEl = document.querySelector('#navn');
         let innpakningTxt = document.querySelector(".innpakning");
         let spillernavn;
-        let antallPoeng;
         let skjemaDivEl = document.querySelector('.skjemaDiv');
         let endScreenEl = document.querySelector('#endScreen');
         let dinScoreEl = document.querySelector('#dinScore');
+        let progressBarEl = document.querySelector('.progressBar');
+        let flytter = false;
 
 
         document.querySelector("#skjema").addEventListener("submit", (e) => {
@@ -57,7 +62,7 @@
             spillernavn=navnEl.value;
         });
 
-        let listeMedSpørsmål = [
+        let listeMedSpørsmål1 = [
                         {
                 spørsmål: "",
                 alternativer: [""],
@@ -85,12 +90,78 @@
             }
             
         ];
-        
+
+        let listeMedSpørsmål = [
+            {
+                spørsmål: "",
+                alternativer: []
+            },
+            {
+                spørsmål: "Spørsmål 1",
+                alternativer: [
+                {
+                    spmTekst: "Riktig",
+                    erRiktig: true
+                },
+                {
+                    spmTekst: "Galt1",
+                    erRiktig: false
+                },
+                {
+                    spmTekst: "Galt2",
+                    erRiktig: false
+                },
+                {
+                    spmTekst: "Galt3",
+                    erRiktig: false
+                }
+                ]
+            },
+            {
+            spørsmål: "Spørsmål 2",
+            alternativer: [
+                {
+                    spmTekst: "Riktig",
+                    erRiktig: true
+                },
+                {
+                    spmTekst: "Galt1",
+                    erRiktig: false
+                },
+                {
+                    spmTekst: "Galt2",
+                    erRiktig: false
+                },
+                {
+                    spmTekst: "Galt3",
+                    erRiktig: false
+                }
+            ]
+            },
+        ];
+
+        function shuffle(array) {
+                var currentIndex = array.length, temporaryValue, randomIndex;
+
+                // While there remain elements to shuffle...
+                while (0 !== currentIndex) {
+
+                    // Pick a remaining element...
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex -= 1;
+
+                    // And swap it with the current element.
+                    temporaryValue = array[currentIndex];
+                    array[currentIndex] = array[randomIndex];
+                    array[randomIndex] = temporaryValue;
+                }
+
+                return array;
+            }
         let tekstboksListe;
 
         function leggeTilSpørsmål(spørsmålObjekt) {
 
-            console.log("legger in spørsmål", spørsmålObjekt);
 
             // Lager et p-element som inneholder spørsmålet
             let spørsmålTxt = document.createElement("div");
@@ -100,23 +171,25 @@
             spørsmålTxt.innerHTML += `<h3>${spørsmålObjekt.spørsmål}</h3>`;
 
             // Henter ut alternativene
-            let alternativer = spørsmålObjekt.alternativer;
-            let fasit = spørsmålObjekt.fasit;
+            let alternativliste = spørsmålObjekt.alternativer;
+            shuffle(alternativliste);
+            
             let innpakningDiv = document.createElement("div");
             innpakningDiv.className = "innpakningDivClass";
 
-            for (let i = 0; i < alternativer.length; i++) {
+            for (let i = 0; i < alternativliste.length; i++) {
                 // Lager et input-element
                 let nyDiv = document.createElement("div");
 
-                nyDiv.dataset.option = `${fasit[i]}`;
+                nyDiv.dataset.option = `${alternativliste[i].erRiktig}`;
 
-                nyDiv.className = "boks";
+                nyDiv.id = "boks";
+                nyDiv.className = `boks${i+1}`;
                 // Legger til checkbox i foreldreelementet (DOM)
                 innpakningDiv.appendChild(nyDiv);
                 spørsmålTxt.appendChild(innpakningDiv);
                 // Legger til alternativet (tekst)
-                nyDiv.innerHTML += `${alternativer[i]}<br>`;
+                nyDiv.innerHTML += `${alternativliste[i].spmTekst}<br>`;
                 nyDiv.addEventListener("click", finnPoeng);
             }
             // Legger til spørsmålet til DOM
@@ -132,15 +205,50 @@
         }
 
 
-        antallPoeng = 0;
-
         function finnPoeng(event) {
-
+            
             let div = event.target;
-            if (div.dataset.option === "riktig") {
-                antallPoeng++;
-            } else {
+            
+            if (div.dataset.option === "true") {
+                
+                totalScore += timeleftms;
+                div.animate(
+                    [{
+                        offset: 0, 
+                        backgroundColor: "aquamarine"
+                    }, 
+                    {
+                        offset: 1,
+                        backgroundColor: "green"
+                    },
 
+                    ],
+                    
+                    {
+                        duration: 500,
+                        fill: "forwards"
+                    }
+                )
+
+            } else {
+                
+                div.animate(
+                    [{
+                        offset: 0,
+                        backgroundColor: "aquamarine"
+                    },
+                    {
+                        offset: 1,
+                        backgroundColor: "red"
+                    },
+
+                    ],
+
+                    {
+                        duration: 500,
+                        fill: "forwards"
+                    }
+                )
             }
 
             let liste = div.parentElement.childNodes;
@@ -150,9 +258,11 @@
                 
                 element.removeEventListener("click", finnPoeng);
             }
-            console.log(antallPoeng);
-
+            if (!flytter) {
+                flytter = true;
             setTimeout("flytt()", 500);
+                
+            }
             
         };
 
@@ -164,7 +274,7 @@
     //Timingfunction for animasjonene
         let timing = {
             duration: tid / 4,
-            easing: "linear",
+            easing: "ease-in-out",
             fill: "forwards"
         }
     
@@ -181,7 +291,14 @@
     let tekstIndeks = 0;
 
     // Funksjon som bytter bilde og tekst
+    let intervall;
+    let totalGjenståendeTid = 0;
+    let timeleftms;
+    let totalScore = 0;
+
         function flytt() {
+            flytter = true;
+            clearInterval(intervall);
             if (tekstIndeks === listeMedSpørsmål.length-1) {
                 avsluttSpill();
                 console.log("Spillet er avsluttet");
@@ -197,21 +314,170 @@
             setTimeout(() => {
                 tekstboksListe[tempIndex].style.display = "none";
             }, tid);
+
+            timeleftms = 100;
+            intervall = setInterval(()=> {
+                timeleftms--;
+                
+                if (timeleftms === 0) {
+                    if (!flytter) {
+                    flytt();
+                        
+                    }
+                }
+            }, 100)
+
+            progressBarEl.animate(
+                [
+                    {
+                        offset: 0,
+                        width: "100%",
+                        backgroundColor: "lightgreen"
+                    },
+                    {
+                        offset: 0.8,
+                        width: "20%",
+                        backgroundColor: "orange"
+                    },
+                    {
+                        offset: 1,
+                        width: 0,
+                        backgroundColor: "red"
+                    }
+                ],
+                {
+                    duration: 10000,
+                    fill: "forwards"
+                }
+            );
+            flytter = false;
         }
 
     const db = firebase.firestore();
 
         function avsluttSpill() {
+            console.log(" y a  Y  e e t" + (totalScore));
+            
                 db.collection("HSQuiz").add({
                 spillernavn: spillernavn,
-                score: antallPoeng
+                score: totalScore
             });
 
-            innpakningTxt.style.display = "none";
-            endScreenEl.style.display = "block";
+            
+            innpakningTxt.animate(
+                [
+                    {
+                        offset: 0,
+                        opacity: 1
+                    },
+                    {
+                        offset: 1,
+                        opacity: 0
+                    }
+                ],
+                {
+                    duration: 1000
+                }
+            );
 
-            dinScoreEl.innerHTML = `Din score ble ${antallPoeng} poeng!`
+            setTimeout(() => {
+                innpakningTxt.style.display = "none";
+                endScreenEl.style.display = "block";
+
+                endScreenEl.animate(
+                    [
+                        {
+                            offset: 0,
+                            opacity: 0
+                        },
+                        {
+                            offset: 1,
+                            opacity: 1
+                        }
+                    ],
+                    {
+                        duration: 1000
+                    }
+                );
+            }, 1000);
+
+            console.log(listeMedSpørsmål.length);
+            
+            
+
+            if (totalScore > ((listeMedSpørsmål.length-1)*100)-50) {
+                console.log("DUde Damn nigga");
+                dinScoreEl.innerHTML = `Din score ble ${totalScore} poeng! BRA JOBBA DETTE KAN DU`;
+            } else if (totalScore > ((listeMedSpørsmål.length - 1) * 100) - 100) {
+                dinScoreEl.innerHTML = `Din score ble ${totalScore} poeng! Dette må du kanskje øve mer på`;
+            } else {
+                dinScoreEl.innerHTML = `Din score ble ${totalScore} poeng! Dette suger du på`;
+            }
+            
+            
         }
+    function oppdaterScoreBoard() {
+        // Tømmer scoreboarden
+        const containerliste = document.querySelectorAll(".highscoreContainer");
+        for (let i = 0; i < containerliste.length; i++) {
+            containerliste[i].innerHTML = "";
+        }
+        scorelisteDialekt = [];
 
+        let antallBehandledeEntries = 0;
+        db.collection("HSQuiz").get().then((querySnapshot) => {
+            querySnapshot.forEach((entry) => {
+                const nyScore = {
+                    spillernavn: entry.data().spillernavn,
+                    score: entry.data().score,
+                    ID: entry.data().ID
+                };
+                scorelisteDialekt.push(nyScore);
+
+                antallBehandledeEntries++;
+                if (antallBehandledeEntries === querySnapshot.size) {
+                    // Alle scorene er lagt til i listen
+                    scorelisteDialekt.sort(compare);
+                    for (let i = 0; i < 5; i++) {
+                        leggTilPaaScoreBoard(scorelisteDialekt[i].spillernavn, scorelisteDialekt[i].score);
+                    }
+                }
+            });
+        });
+        function compare(a, b) {
+            if (a.score > b.score)
+                return -1;
+            if (a.score < b.score)
+                return 1;
+            return 0;
+        }
+        function leggTilPaaScoreBoard(spillernavn, score) {
+            for (let i = 0; i < containerliste.length; i++) {
+                const nyDiv = document.createElement("div");
+                containerliste[i].appendChild(nyDiv);
+                const nyttNavnEl = document.createElement("h4");
+                nyttNavnEl.innerHTML = spillernavn;
+                const nyttScoreEl = document.createElement("p");
+                nyttScoreEl.innerHTML = score;
+                nyDiv.appendChild(nyttNavnEl);
+                nyDiv.appendChild(nyttScoreEl);
+            }
+        }
+    }
+    let henterData = false;
+    function handleNyeData() {
+            if (!henterData) {
+                henterData = true;
+                oppdaterScoreBoard();
+                henterData = false;
+            } else {
+                setTimeout(() => {
+                    handleNyeData();
+                }, 100);
+            }
+        }
+    db.collection("HSQuiz").onSnapshot(() => {
+            handleNyeData();
+        });
 </script>
 </html>
