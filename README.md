@@ -20,8 +20,4 @@ Github-prosjekt for litterært program i norskfaget.
 - [ ] Quiz om språkhistorie
 - [x] Adminside (Ferdig, klar for styling)
 - [x] Kart-quiz om dialekter TODO:
-	- Vi må lage og legge inn dialekter på siden.
-	- Styling fixes left: 
-		- overskrift delvis skjult når man skal skrive inn navn.
-		- h4 mangler styling på alle sider
-		- knapper med atributtet "disabled" må få egen style
+	- Vi må lage og legge inn dialekter på siden (Mia: ?????).
