@@ -8,9 +8,85 @@
     <!-- FIX FOR MOBILE ENHETER -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta charset="utf-8" />
-    <title></title>
+    <title>Språkhistoriequiz</title>
 </head>
 <body>
+
+
+
+
+
+  <nav>
+    <!-- links -->
+    <div>
+      <a href="index.html">språk og dialekter</a>
+    </div>
+
+    <div class="nav">
+      <a href="infoHistorie.html">les om språkhistorie</a>
+      <a href="quizHistorie.html">ta en quiz</a>
+      <a href="infoDialekt.html">les om dialekter</a>
+      <a href="spillDialekter.html">gjett dialekten</a>
+    </div>
+  </nav>
+
+
+
+
+
+  <main>
+
+
+    <div id="mainTitle">
+      <h1>ta en quiz om<br />språkhistorie</h1>
+    </div>
+
+
+    <div id="wrapQuiz">
+
+      <h2>registrer spiller</h2>
+
+      <div class="skjemaDiv">
+          <form id="skjema">
+              <input id="navn" type="text" placeholder="Navn" required>
+              <button class="coolButton" type="submit">Gay</button>
+          </form>
+      </div>
+
+      <div class="innpakning">
+          <div class="progressContainer">
+              <div class="progressBar"></div>
+          </div>
+      </div>
+
+      <div id="endScreen">
+          <h1>Spill ferdig!</h1>
+          <p id="dinScore"></p>
+          <div class="highscoreContainer"></div>
+      </div>
+
+    </div>
+
+
+  </main>
+
+
+
+
+
+  <footer>
+    <p>Norsk språkhistorie og dialekter</p>
+    <p>Lagd av Adrian, Erling, Jacob, Mia</p>
+    <p>3STB | 2019</p>
+
+    <!-- back to top button -->
+  </footer>
+
+
+
+
+    <!-- ORIGINAL:
+
     <h1>Quiz</h1>
     <div class="skjemaDiv">
         <form id="skjema">
@@ -28,8 +104,21 @@
         <p id="dinScore"></p>
         <div class="highscoreContainer"></div>
     </div>
+  -->
+
+
+
+
+
 </body>
+
+
+
+
+
     <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+
+
     <script>
         // Initialize Firebase
         var config = {
@@ -42,6 +131,11 @@
         };
         firebase.initializeApp(config);
     </script>
+
+
+    <script src="scripts/quizHistorie.js"></script>
+
+
 <script>
     // DOM
         let navnEl = document.querySelector('#navn');
@@ -77,18 +171,18 @@
                 spørsmål: "Spørsmål 2",
                 alternativer: ["Galt", "Galt", "Riktig", "Galt"],
                 fasit: ["galt", "galt", "riktig", "galt"]
-            }, 
+            },
             {
                 spørsmål: "Spørsmål 3",
                 alternativer: ["Riktig", "Galt", "Galt", "Galt"],
                 fasit: ["riktig", "galt", "galt", "galt"]
-            }, 
+            },
             {
                 spørsmål: "Spørsmål 4",
                 alternativer: ["Riktig", "Galt", "Galt", "Galt"],
                 fasit: ["riktig", "galt", "galt", "galt"]
             }
-            
+
         ];
 
         let listeMedSpørsmål = [
@@ -173,7 +267,7 @@
             // Henter ut alternativene
             let alternativliste = spørsmålObjekt.alternativer;
             shuffle(alternativliste);
-            
+
             let innpakningDiv = document.createElement("div");
             innpakningDiv.className = "innpakningDivClass";
 
@@ -206,24 +300,24 @@
 
 
         function finnPoeng(event) {
-            
+
             let div = event.target;
-            
+
             if (div.dataset.option === "true") {
-                
+
                 totalScore += timeleftms;
                 div.animate(
                     [{
-                        offset: 0, 
+                        offset: 0,
                         backgroundColor: "aquamarine"
-                    }, 
+                    },
                     {
                         offset: 1,
                         backgroundColor: "green"
                     },
 
                     ],
-                    
+
                     {
                         duration: 500,
                         fill: "forwards"
@@ -231,7 +325,7 @@
                 )
 
             } else {
-                
+
                 div.animate(
                     [{
                         offset: 0,
@@ -255,15 +349,15 @@
 
             for (let i = 0; i < liste.length; i++) {
                 let element = liste[i];
-                
+
                 element.removeEventListener("click", finnPoeng);
             }
             if (!flytter) {
                 flytter = true;
             setTimeout("flytt()", 500);
-                
+
             }
-            
+
         };
 
     //FLYTTE TING REEEEEEEEEEE
@@ -277,7 +371,7 @@
             easing: "ease-in-out",
             fill: "forwards"
         }
-    
+
     let innFraHoyre = [
             { left: `${tekstBredde}vw` },
             { left: 0 }
@@ -287,7 +381,7 @@
             { left: 0 },
             { left: `${-tekstBredde}vw` }
         ];
-    
+
     let tekstIndeks = 0;
 
     // Funksjon som bytter bilde og tekst
@@ -303,7 +397,7 @@
                 avsluttSpill();
                 console.log("Spillet er avsluttet");
                 return;
-                
+
             }
             console.log("y e et");
             tekstboksListe[tekstIndeks].animate(utTilVenstre, timing);
@@ -318,11 +412,11 @@
             timeleftms = 100;
             intervall = setInterval(()=> {
                 timeleftms--;
-                
+
                 if (timeleftms === 0) {
                     if (!flytter) {
                     flytt();
-                        
+
                     }
                 }
             }, 100)
@@ -357,13 +451,13 @@
 
         function avsluttSpill() {
             console.log(" y a  Y  e e t" + (totalScore));
-            
+
                 db.collection("HSQuiz").add({
                 spillernavn: spillernavn,
                 score: totalScore
             });
 
-            
+
             innpakningTxt.animate(
                 [
                     {
@@ -402,8 +496,8 @@
             }, 1000);
 
             console.log(listeMedSpørsmål.length);
-            
-            
+
+
 
             if (totalScore > ((listeMedSpørsmål.length-1)*100)-50) {
                 console.log("DUde Damn nigga");
@@ -413,8 +507,8 @@
             } else {
                 dinScoreEl.innerHTML = `Din score ble ${totalScore} poeng! Dette suger du på`;
             }
-            
-            
+
+
         }
     function oppdaterScoreBoard() {
         // Tømmer scoreboarden
@@ -480,4 +574,6 @@
             handleNyeData();
         });
 </script>
+
+
 </html>
