@@ -1,7 +1,7 @@
 ﻿"use strict";
 const db = firebase.firestore();
 
-const riktigesvar = ["Bergen", "Trondheim", "Grønland / Oslo Øst", "Fredrikstad", "Området rundt Hardangerfjorden", "Sørlandet", "Tromsø", "Hallingdal", "Nordstrand", "Molde"]; 
+const riktigesvar = ["Bergen", "Trondheim", "Grønland / Oslo Øst", "Fredrikstad", "Området rundt Hardangerfjorden", "Sørlandet", "Tromsø", "Hallingdal", "Nordstrand", "Molde"];
 
 let map;
 let aktivMarkorindex = 0;
@@ -90,7 +90,7 @@ function hentStats() {
         const container = document.querySelector(containerSel);
         const nyDiv = document.createElement("div");
         container.appendChild(nyDiv);
-        const nyttNavnEl = document.createElement("h4");
+        const nyttNavnEl = document.createElement("h6");
         nyttNavnEl.innerHTML = spillernavn;
         const nyttScoreEl = document.createElement("p");
         nyttScoreEl.innerHTML = score;

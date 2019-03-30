@@ -15,26 +15,28 @@
         <h1>Statistikk</h1>
         <h2>Alle spilleres gjetninger fra Dialektspillet!</h2>
         <h3 id="riktigDialekt"></h3>
-        <button id="knappTilbake">Forrige</button>
-        <button id="knappFrem">Neste</button>
+        <div id="wrapBtns">
+          <button id="knappTilbake">Forrige</button>
+          <button id="knappFrem">Neste</button>
+        </div>
         <div id="markorPlassinger">
             <div id="map"></div>
         </div>
         <h2>Fullstendig scoreboard</h2>
         <div id="scoreboardContainer">
             <div id="quizScoreContainer">
+              <h4 class="bigger">Historiequizen</h4>
                 <div class="overskrift">
-                    <h2>Resultater fra quizen</h2>
-                    <h3>Spillernavn</h3>
-                    <h3>Score</h3>
+                    <h5>Spillernavn</h5>
+                    <h5>Score</h5>
                 </div>
                 <div id="scoreQuiz"></div>
             </div>
             <div id="dialektScoreContainer">
+              <h4 class="bigger">Dialektspillet</h4>
                 <div class="overskrift">
-                    <h2>Resultater fra Dialektspillet</h2>
-                    <h3>Spillernavn</h3>
-                    <h3>Score</h3>
+                    <h5>Spillernavn</h5>
+                    <h5>Score</h5>
                 </div>
                 <div id="scoreDialekt"></div>
             </div>
