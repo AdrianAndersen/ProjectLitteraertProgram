@@ -11,11 +11,13 @@ let infoDialekt = document.querySelector('#infoDialekt');
 let dialektHead = document.querySelector('#dialektHead');
 let dialektSide = document.querySelector('#dialektSide');
 let dialektMain = document.querySelector('#dialektMain');
-let allDialektMainCols = document.getElementsByClassName('dialektMainCol');
+let allDialektMainCols = Array.from(document.getElementsByClassName('dialektMainCol'));
 
 let wrapBtnsDialekt = document.querySelector('#wrapBtnsDialekt');
 
 let footer = document.querySelector('footer');
+
+let allDialektMainColsArr;
 
 
 
@@ -43,6 +45,7 @@ let data = [
     tjukkL: '',
     palatalisering: '',
     infinitiv: '',
+    personligePronomen: '',
     svakeHunkjonnsord: '',
     sterkeHunkjonnsord: '',
     skarreR: '',
@@ -170,10 +173,12 @@ function mainTop() {
 
 /* ---------- SET ROW NUM ---------- */
 
+/*
 function rowNum() {
   // adjust rows in info text
   infoDialekt.style.setProperty('--rowDialekt', `${data.length/2}`);
 }
+*/
 
 
 
@@ -206,7 +211,7 @@ function infoDialektGrid() {
 
 /* ---------- INSERT DATA ---------- */
 
-function insertDialektData() {
+function insertDialektSide() {
 
   data.forEach(elem => {
     // table head
@@ -220,40 +225,6 @@ function insertDialektData() {
     dialektMain.innerHTML += `
       <div class="dialektMainCol"></div>
     `;
-
-    // table main cols data
-    /*
-    allDialektMainCols.forEach(col => {
-      elem.forEach(entry => {
-        col.innerHTML += `
-          <div>${entry}</div>
-        `;
-      });
-    });
-    */
-
-    /*
-    for (let i = 0; i < allDialektMainCols.length; i++) {
-      for (let k = 0; k < elem.length; k++) {
-        allDialektMainCols[i].innerHTML += `
-          <div class="text">
-            <p>${elem[k]}</p>
-          </div>
-        `;
-      }
-    }
-    */
-
-    console.log(Array.from(elem));
-
-    for (let i = 0; i < allDialektMainCols.length; i++) {
-      allDialektMainCols[i].innerHTML += `
-        <div class="text">
-          <p>hey</p>
-        </div>
-      `;
-    }
-
   });
 
 
@@ -265,6 +236,8 @@ function insertDialektData() {
       </div>
     `;
   });
+
+  allDialektMainColsArr = Array.from(document.getElementsByClassName('dialektMainCol'));
 
   console.log('insertDialektData');
 
@@ -344,6 +317,91 @@ function insertData() {
 
 
 
+/* ---------- GET SPECIFIC DATA ---------- */
+
+function getPropVal(obj, prop) {
+  return obj.prop;
+}
+
+
+
+
+
+/* ---------- INSERT DATA ---------- */
+
+function insertMainData() {
+
+  let object;
+  let property;
+
+  let allProps = [];
+  let allUniqueProps = [];
+
+
+  allDialektMainColsArr.forEach(col => {
+    for (let property in data[0]) {
+      // collect all properties from all objects in data (array)
+      allProps.push(property);
+    }
+  });
+
+  // Remove duplicates automatically with Set
+  allUniqueProps = [...new Set(allProps)];
+
+  // let allColParts = Array.from(document.getElementsByClassName('colPart'));
+
+  // console.log(allDialektMainColsArr);
+  console.log(allUniqueProps);
+  // console.log(allColParts);
+
+  for (let i = 1; i <= allDialektMainColsArr.length; i++) {
+
+    object = data[i];
+    console.log(object);
+
+    for (let k = 1; k < allUniqueProps.length; k++) {
+
+      property = allUniqueProps[k];
+
+      let info = getPropVal(object, property);
+
+      allDialektMainColsArr[i].innerHTML += `
+        <div class="colPart">
+          <p>${object}</p>
+        </div>
+      `;
+
+    }
+  }
+
+  /*
+  allDialektMainColsArr.forEach(col => {
+    data.forEach(area => {
+      for (let property in area) {
+        col.innerHTML += `
+          <div class="text">
+            <p>${area[property]}</p>
+          </div>
+        `;
+      }
+    });
+  });
+  */
+
+  /*
+  for (let i = 1; i < array.length; i++) {
+    array[i];
+  }
+  */
+
+  console.log('insertMainData');
+
+}
+
+
+
+
+
 /* ---------- REGISTER FUNCTIONS ---------- */
 
 mainTop();
@@ -353,4 +411,5 @@ colNum();
 footerTop();
 
 // insertData();
-insertDialektData();
+insertDialektSide();
+insertMainData();
