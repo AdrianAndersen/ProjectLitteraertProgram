@@ -17,7 +17,7 @@ Github-prosjekt for litterært program i norskfaget.
 ## To do
 - [ ] Design (base: x; info: x; dialekter: /; footer: ???; back to top: x spill: x)
 - [ ] Tekst om språkhistorie
-- [ ] Tekst om dialekter
+- [x] Tekst om dialekter
 - [ ] Quiz om språkhistorie
 - [ ] Adminside (Ferdig, klar for styling)
 - [ ] Kart-quiz om dialekter TODO:
