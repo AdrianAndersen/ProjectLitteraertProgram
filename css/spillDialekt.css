@@ -105,6 +105,21 @@ h3 {
   letter-spacing: calc(var(--base)*0.25);
 }
 
+h4 {
+  margin-left: calc(var(--base)*8.5);
+
+  font-family: var(--font-heading-2);
+  font-weight: bold;
+  font-size: calc(var(--base)*2);
+
+  color: var(--blue);
+
+  text-align: left;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: calc(var(--base)*0.25);
+}
+
 
 
 
@@ -308,6 +323,24 @@ button {
   line-height: calc(var(--base)*2.5);
 
   cursor: pointer;
+  transition: var(--smooth);
+}
+
+button:hover {
+  box-shadow: var(--smooth-light-shadow);
+}
+
+button:active {
+  transform: translateY(0.5rem);
+}
+
+button:disabled {
+  background: var(--gray);
+  cursor: not-allowed;
+}
+
+.endBtn {
+  width: auto;
 }
 
 
@@ -407,15 +440,21 @@ button {
 }
 
 .highscoreContainer {
-  width: 20rem;
+  width: calc(var(--base)*50);
   display: grid;
+
+  margin-top: calc(var(--base)*2);
 }
 
 .highscoreContainer div {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  border: 1px solid black;
+  border: 1px solid var(--gray);
   padding: 1rem;
+}
+
+.highscoreContainer div:first-child {
+  background: lightyellow;
 }
 
 .highscoreContainer * {
