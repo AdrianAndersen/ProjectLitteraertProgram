@@ -19,5 +19,4 @@ Github-prosjekt for litterært program i norskfaget.
 - [x] Tekst om dialekter
 - [ ] Quiz om språkhistorie
 - [x] Adminside (Ferdig, klar for styling)
-- [x] Kart-quiz om dialekter TODO:
-	- Vi må lage og legge inn dialekter på siden (Mia: ?????).
+- [x] Kart-quiz om dialekter
