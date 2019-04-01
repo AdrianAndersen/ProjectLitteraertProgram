@@ -30,24 +30,52 @@ let footerHeight = pxToNum(footerCompHeight);
 
 let data = [
   {
-    year: 1900,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas feugiat elementum magna id hendrerit. Sed rutrum varius turpis a blandit. Nam consectetur purus sem, a volutpat urna sodales aliquam. Vivamus ultricies metus congue diam tristique, accumsan varius arcu imperdiet.'
+    year: 1907,
+    text: `rettskrivingsreform – riksmål (bløte konsonanter fjernes) <br>` +
+        `<ul><li>sidemålsstilen – alle skal beherske begge målformer </li>
+        <li>Norsk Riksmålsforbund stiftes – kamporganisasjon. </li></ul> `+` <br><br><p>Første rettskrivningsreform, dansk-norsken får navnet "riksmål"</p>`
   },
   {
-    year: 1900,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas feugiat elementum magna id hendrerit. Sed rutrum varius turpis a blandit. Nam consectetur purus sem, a volutpat urna sodales aliquam. Vivamus ultricies metus congue diam tristique, accumsan varius arcu imperdiet.'
+    year: 1917,
+    text: ` tilnærming + fornorsking + samnorsk <br> <ul>
+ <li>rettskrivingsreform – mere valgfrihet, men ingen valgte annerledes – for stor individuell frihet</li>
+ <ul>
+ <li>begge kan bruke hokjønnsbøying eller felleskjønn (hankjønn) → valgfrihet</li>
+ <li>før: større forskjell mellom målene</li>
+ <li>dansken mykes opp – mer fornorsking</li>
+</ul></ul>
+`
   },
   {
-    year: 1900,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas feugiat elementum magna id hendrerit. Sed rutrum varius turpis a blandit. Nam consectetur purus sem, a volutpat urna sodales aliquam. Vivamus ultricies metus congue diam tristique, accumsan varius arcu imperdiet.'
+    year: 1938,
+    text: `tilnærming + fornorsking – samnorsk
+    <ul><li>radikal reform – fellesform blir obligatoriske</li>
+    <li>begge parter ble sinte på samnorsken – ingen ville ha det – sterke protester</li>
+    </ul>
+`
   },
   {
-    year: 1900,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas feugiat elementum magna id hendrerit. Sed rutrum varius turpis a blandit. Nam consectetur purus sem, a volutpat urna sodales aliquam. Vivamus ultricies metus congue diam tristique, accumsan varius arcu imperdiet.'
+    year: 1970,
+    text: `dialektbølge
+    <ul><li>mindre bruk av høflighetsformer</li>
+    <li>arbeiderbevegelsen sto sterkt</li>
+    <li>“skriv nynorsk; snakk dialekt” – folkelig</li>
+    </ul>
+
+`
   },
   {
-    year: 1900,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas feugiat elementum magna id hendrerit. Sed rutrum varius turpis a blandit. Nam consectetur purus sem, a volutpat urna sodales aliquam. Vivamus ultricies metus congue diam tristique, accumsan varius arcu imperdiet.'
+    year: 1972,
+    text: `Norsk språkråd opprettet. Samnorsktanken forlates og språkstriden stilner
+`
+  },
+  {
+    year: 1981,
+    text: `tilnærming stopper – språket er som i 1917
+    <ul><li>samnorsk stoppes</li>
+    <li>tillatt med mer konservative former: -en</li>
+    <li>valgfrihet mellom en-/a-ending</li></ul>
+`
   },
 ];
 
