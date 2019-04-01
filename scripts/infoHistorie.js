@@ -30,10 +30,23 @@ let footerHeight = pxToNum(footerCompHeight);
 
 let data = [
   {
+    year: "1350 - 1905",
+    text: `<ul><li>1350: Svartedauden, norsk skriftspråk dør ut</li>
+<li>1380: Union med Danmark</li>
+<li>1500-tallet: Dansk bibel og dansk kirkepråk i Norge</li>
+<li>1814: Unionen oppløses, men dansk fortsatt skriftspråk</li>
+<li>1830: Språkdebatt, Wergeland tar til orde for fornorsking</li>
+<li>1840-tallet: Asbjørnsen og Moes Norske folkeeventyr</li>
+<li>1850: Ivar Aasen gir ut Ordbog over det norske Folkesprog</li>
+<li>1862: Knud Knudsens forslag til fornorsking vedtatt</li>
+<li>1885: "Landsmål" (nynorsk) likestilles med dansk-norsken</li>
+<li>1905: Unionen med Sverige oppløses</li></ul>`
+  },
+  {
     year: 1907,
     text: `rettskrivingsreform – riksmål (bløte konsonanter fjernes) <br>` +
         `<ul><li>sidemålsstilen – alle skal beherske begge målformer </li>
-        <li>Norsk Riksmålsforbund stiftes – kamporganisasjon. </li></ul> `+` <br><br><p>Første rettskrivningsreform, dansk-norsken får navnet "riksmål"</p>`
+        <li>Norsk Riksmålsforbund stiftes – kamporganisasjon. </li></ul> <p><br>Første rettskrivningsreform, dansk-norsken får navnet "riksmål"</p>`
   },
   {
     year: 1917,
@@ -75,6 +88,7 @@ let data = [
     <ul><li>samnorsk stoppes</li>
     <li>tillatt med mer konservative former: -en</li>
     <li>valgfrihet mellom en-/a-ending</li></ul>
+    <p><br>  Ny nynorskreform der en del konservative former går ut</p>
 `
   },
 ];
