@@ -95,43 +95,182 @@
             alternativer: []
         },
         {
-            spørsmål: "Spørsmål 1",
+            spørsmål: "I hvilket år får dansk-norsken navnet «riksmål»?",
             alternativer: [
                 {
-                    spmTekst: "Riktig",
+                    spmTekst: "1907",
                     erRiktig: true
                 },
                 {
-                    spmTekst: "Galt1",
+                    spmTekst: "1917",
                     erRiktig: false
                 },
                 {
-                    spmTekst: "Galt2",
+                    spmTekst: "1972",
                     erRiktig: false
                 },
                 {
-                    spmTekst: "Galt3",
+                    spmTekst: "1872",
                     erRiktig: false
                 }
             ]
         },
         {
-            spørsmål: "Spørsmål 2",
+            spørsmål: "Hvilken radikal reform fikk sterk kritikk i norge i 1938?",
             alternativer: [
                 {
-                    spmTekst: "Riktig",
+                    spmTekst: "Samnorsk reformen",
                     erRiktig: true
                 },
                 {
-                    spmTekst: "Galt1",
+                    spmTekst: "Riksmålreformen",
                     erRiktig: false
                 },
                 {
-                    spmTekst: "Galt2",
+                    spmTekst: "Same reformen",
                     erRiktig: false
                 },
                 {
-                    spmTekst: "Galt3",
+                    spmTekst: "Landsmål reformen",
+                    erRiktig: false
+                }
+            ]
+        },
+        {
+            spørsmål: "Hva preget rettskrivningsreformen i 1917?",
+            alternativer: [
+                {
+                    spmTekst: "Mer valgfrihet",
+                    erRiktig: true
+                },
+                {
+                    spmTekst: "Mindre valgfrihet",
+                    erRiktig: false
+                },
+                {
+                    spmTekst: "Ingen store endringer skjedde",
+                    erRiktig: false
+                },
+                {
+                    spmTekst: "Fellesform blir obligatorisk",
+                    erRiktig: false
+                }
+            ]
+        },
+        {
+            spørsmål: "Hvilket kjent slagord hadde noregs mållag i 1970?",
+            alternativer: [
+                {
+                    spmTekst: "«Skriv nynorsk; snakk dialekt»",
+                    erRiktig: true
+                },
+                {
+                    spmTekst: "«Skriv bokmål; snakk dialekt»",
+                    erRiktig: false
+                },
+                {
+                    spmTekst: "«Skriv landsmål; snakk dialekt»",
+                    erRiktig: false
+                },
+                {
+                    spmTekst: "«Skriv nynorsk; snakk samisk»",
+                    erRiktig: false
+                }
+            ]
+        },
+        {
+            spørsmål: "I hvilket år ble det norske språkrådet opprettet?",
+            alternativer: [
+                {
+                    spmTekst: "1972",
+                    erRiktig: true
+                },
+                {
+                    spmTekst: "1970",
+                    erRiktig: false
+                },
+                {
+                    spmTekst: "1927",
+                    erRiktig: false
+                },
+                {
+                    spmTekst: "1870",
+                    erRiktig: false
+                }
+            ]
+        },
+        {
+            spørsmål: "Hvem samlet folkeeventyr på 1840-tallet",
+            alternativer: [
+                {
+                    spmTekst: "Asbjørnsen og Moe",
+                    erRiktig: true
+                },
+                {
+                    spmTekst: "Bjørnstjerne og Hamsun",
+                    erRiktig: false
+                },
+                {
+                    spmTekst: "Bjørneboe og Kjelland",
+                    erRiktig: false
+                },
+                {
+                    spmTekst: "Skram og Nesbø",
+                    erRiktig: false
+                }
+            ]
+        },
+        {
+            spørsmål: "I hvilke dialekt-områder finner vi skarre-r?",
+            alternativer: [
+                {
+                    spmTekst: "Vestlandsk, med unntak av området nord for Sognefjordene",
+                    erRiktig: true
+                },
+                {
+                    spmTekst: "Nordnorsk, med unntak av området sør for Finnmark",
+                    erRiktig: false
+                },
+                {
+                    spmTekst: "Midt norsk, med unntak av området øst for Møre og Romsdal",
+                    erRiktig: false
+                },
+                {
+                    spmTekst: "Sør norsk, med unntak av området nord for Kristiansand",
+                    erRiktig: false
+                }
+            ]
+        },
+        {
+            spørsmål: "Har trøndsk tjukk L?",
+            alternativer: [
+                {
+                    spmTekst: "Ja",
+                    erRiktig: true
+                },
+                {
+                    spmTekst: "Nei",
+                    erRiktig: false
+                }
+            ]
+        },
+        {
+            spørsmål: "Hva endret stortinget navnet på språkformen landsmål til i 1929?",
+            alternativer: [
+                {
+                    spmTekst: "Nynorsk",
+                    erRiktig: true
+                },
+                {
+                    spmTekst: "Bokmål",
+                    erRiktig: false
+                },
+                {
+                    spmTekst: "Landsmål",
+                    erRiktig: false
+                },
+                {
+                    spmTekst: "Sidemål",
                     erRiktig: false
                 }
             ]
@@ -281,7 +420,7 @@
         setTimeout(() => {
             tekstboksListe[tempIndex].style.display = "none";
         }, tid);
-        timeleftms = 100;
+        timeleftms = 200;
         intervall = setInterval(()=> {
             timeleftms--;
 
@@ -311,7 +450,7 @@
                 }
             ],
             {
-                duration: 10000,
+                duration: 20000,
                 fill: "forwards"
             }
         );
@@ -363,13 +502,13 @@
         console.log(listeMedSpørsmål.length);
 
 
-        if (totalScore > ((listeMedSpørsmål.length-1)*100)-50) {
+        if (totalScore > ((listeMedSpørsmål.length-1)*200)-400) {
             console.log("DUde Damn nigga");
-            dinScoreEl.innerHTML = `Din score ble ${totalScore} poeng! BRA JOBBA DETTE KAN DU`;
-        } else if (totalScore > ((listeMedSpørsmål.length - 1) * 100) - 100) {
-            dinScoreEl.innerHTML = `Din score ble ${totalScore} poeng! Dette må du kanskje øve mer på`;
+            dinScoreEl.innerHTML = `Din score ble ${totalScore} poeng! Dette kan du!`;
+        } else if (totalScore > ((listeMedSpørsmål.length - 1) * 200) - 800) {
+            dinScoreEl.innerHTML = `Din score ble ${totalScore} poeng! Bra jobba`;
         } else {
-            dinScoreEl.innerHTML = `Din score ble ${totalScore} poeng! Dette suger du på`;
+            dinScoreEl.innerHTML = `Din score ble ${totalScore} poeng! Dette må jobbes mer med!`;
         }
 
 
