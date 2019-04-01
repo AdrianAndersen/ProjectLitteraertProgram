@@ -376,7 +376,7 @@ footer p {
   flex-flow: column;
   align-items: center;
   align-content: center;
-  justify-content: center;
+  justify-content: flex-start;
 
   border: calc(var(--base)*0) solid red;
 
@@ -403,7 +403,7 @@ footer p {
   flex-flow: column;
   align-items: flex-start;
   align-content: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .text p {
@@ -420,7 +420,7 @@ footer p {
   line-height: calc(var(--base)*2.5);
 }
 
-ul li{
+ul li {
   font-family: var(--font-main-1);
   font-weight: normal;
   font-size: calc(var(--base)*1.5);
@@ -530,6 +530,8 @@ ul li{
 #mainInfo {
   /* row start | col start | row end | col end */
   grid-area: 3 / 2 / 9 / 6;
+
+  height: calc(var(--base)*400);
 
   padding: calc(var(--base)*12)
            calc(var(--base)*4)

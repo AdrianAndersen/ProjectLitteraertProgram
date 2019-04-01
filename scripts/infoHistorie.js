@@ -30,7 +30,7 @@ let footerHeight = pxToNum(footerCompHeight);
 
 let data = [
   {
-    year: "Eldre nynorsk (fra ca. 1525)",
+    year: 1525,
     text: `Da dansk avløste norsk som skriftspråk betydde det ingen stor omveltning for nordmenn flest; talemålet var dialektene, i byene med innslag av dansk, som i vekslende grad farget uttalen og ordforrådet hos de forskjellige sosiale lag. Etter 1550 vokser det frem en ny norsk litteratur med skrifter av blant andre Absalon Pederssøn Beyer, Jens Nielssøn og Peder Claussøn på et blandingsspråk av dansk under innflytelse av norsk talemål. Dette blandingsspråket er utgangspunktet for det moderne bokmål. <br><br>
 Fra midten av 1600-tallet utgis enkelte skrifter på bygdemål. I 1646 utgav presten Christen Jenssøn Den Norske Dictionarium med målføreord særlig fra Sunnfjord. Det er den første norske ordboken nest etter Jens Bjelkes juridiske ordsamling fra 1634. Med Ludvig Holbergs forfatterskap synes det som oppfatningen av at skriftspråket også er nordmennenes språk, får større styrke. Holbergs skriftspråk er lett norskfarget.<br><br>
 Et par ganger skrev regjeringen i København til embetsmennene også i Norge og bad dem gi opplysninger om språket i sine distrikter, første gang rundt 1700, annen gang 1743. Materialet ble delvis utnyttet av danske ordbokforfattere. Disse henvendelsene skapte interesse for norsk språk.<br><br>
@@ -51,7 +51,7 @@ Begivenhetene i 1814 skapte ikke noe språkhistorisk skille på kort sikt. I § 
 <li>1885: "Landsmål" (nynorsk) likestilles med dansk-norsken</li>
 <li>1905: Unionen med Sverige oppløses</li></ul>`
   },{
-    year: "Moderne Norsk (fra 1840)\n",
+    year: 1840,
     text: `Det nasjonale gjennombrudd i 1840-årene førte til en språklig fornyelse på flere måter. Asbjørnsen og Moes gjenfortelling av folkeeventyrene gav grunnlaget for den nye norske prosa, som gjennomførte norsk stiltone i det tradisjonelle skriftspråket. Samtidig tok overlærer Knud Knudsen opp arbeidet for fornorsking på alle områder av språket (ordforrådet, orddannelse, bøyning, rettskrivning, uttale). Så kom fra 1848 de viktige arbeider av Ivar Aasen over det norske folkemål. På grunnlag av disse arbeidene, som viste sammenhengen mellom gammelnorsk og norske dialekter, bygde Aasen sin landsmålsnorm (første gang satt frem i Prøver af Landsmaalet i Norge, 1853). I sin normalform tok Aasen særlig hensyn til de dialekter som stod gammelnorsk nærmest så vel i bøyningsforhold som i lydforhold og ordforråd. Se også artikkel om norsk målreising. <br><br>
 Aasens lansering av et norsk skriftspråk, og Wergelands og Knudsens programmer for gradvis fornorsking av det danske, førte til to konkurrerende retninger. I 1885 ble landsmålet jamstilt som offisiell språkform ved at Stortinget vedtok kirkekomiteens henstilling til regjeringen: «Regjeringen anmodes om at træffe fornøden Forføining til, at det norske Folkesprog som Skole- og officielt Sprog sidestilles med vort almindelige Skrift- og Bogsprog» («jamstillingsvedtaket»). I folkeskolen ble jamstillingen fastslått ved folkeskoleloven av 1892, som overlot til skolestyret å bestemme om landsmål eller bokmål skulle brukes som opplærings- og lærebokmål i kommunen. Ved lærerskolene ble skriftlig prøve i begge mål innført ved lov i 1902, i gymnaset i 1907.<br><br>
 Fra 1900-tallet har utviklingen vært preget av de store rettskrivningsreformene: 1901 for landsmålet, 1907 for riksmålet, en mindre i 1910 for landsmål, og så for begge mål i 1917 og 1938, den siste med revisjon i 1959 og for bokmål i 1981 og 2005, foruten en del detaljrevisjoner etter forslag fra Norsk språkråd. For riksmål/bokmål har virkningen vært at det fra 1907 helt klart er et norsk skriftspråk og ikke et dansk. Der det er avvik mellom historisk skrivemåte og vanlig uttale, har begge mål nærmet seg uttalegjengivelse, og landsmål/nynorsk har gradvis tatt mer hensyn til østnorsk talemål og bydialektene.<br><br>
@@ -131,7 +131,7 @@ function pxToNum(string) {
 
 function mainTop() {
   // adjust margin top
-  main.style.setProperty('--mainTop', `${navHeight}px`);
+  main.style.setProperty('--mainTop', `-${20*navHeight}px`);
 }
 
 
