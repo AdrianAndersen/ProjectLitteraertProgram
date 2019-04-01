@@ -11,10 +11,23 @@
     <title>Historiequiz</title>
 </head>
 <body>
+  <nav>
+    <!-- links -->
+    <div>
+      <a href="index.html">språk og dialekter</a>
+    </div>
+
+    <div class="nav">
+      <a href="infoHistorie.html">les om språkhistorie</a>
+      <a href="quizHistorie.html">ta en quiz</a>
+      <a href="infoDialekt.html">les om dialekter</a>
+      <a href="spillDialekter.html">gjett dialekten</a>
+    </div>
+  </nav>
 <h1>Quiz om språkhistorie</h1>
 <div class="skjemaDiv">
     <form id="skjema">
-        <input id="navn" type="text" required>
+        <input id="navn" type="text" placeholder="Navn" equired>
         <button class="coolButton" type="submit">Start spill</button>
     </form>
 </div>
@@ -53,11 +66,13 @@
     let endScreenEl = document.querySelector('#endScreen');
     let dinScoreEl = document.querySelector('#dinScore');
     let progressBarEl = document.querySelector('.progressBar');
+    let heading = document.querySelector('h1');
     let flytter = false;
     document.querySelector("#skjema").addEventListener("submit", (e) => {
         e.preventDefault();
         skjemaDivEl.style.display = "none";
         innpakningTxt.style.display = "block";
+        heading.style.display = "none";
         flytt();
         spillernavn=navnEl.value;
     });
@@ -119,7 +134,7 @@
             spørsmål: "Hvilken radikal reform fikk sterk kritikk i norge i 1938?",
             alternativer: [
                 {
-                    spmTekst: "Samnorsk reformen",
+                    spmTekst: "Samnorskreformen",
                     erRiktig: true
                 },
                 {
@@ -127,11 +142,11 @@
                     erRiktig: false
                 },
                 {
-                    spmTekst: "Same reformen",
+                    spmTekst: "Samereformen",
                     erRiktig: false
                 },
                 {
-                    spmTekst: "Landsmål reformen",
+                    spmTekst: "Landsmålreformen",
                     erRiktig: false
                 }
             ]
