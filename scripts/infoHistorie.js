@@ -31,25 +31,19 @@ let footerHeight = pxToNum(footerCompHeight);
 let data = [
   {
     year: 1525,
-    text: `Da dansk avløste norsk som skriftspråk betydde det ingen stor omveltning for nordmenn flest; talemålet var dialektene, i byene med innslag av dansk, som i vekslende grad farget uttalen og ordforrådet hos de forskjellige sosiale lag. Etter 1550 vokser det frem en ny norsk litteratur med skrifter av blant andre Absalon Pederssøn Beyer, Jens Nielssøn og Peder Claussøn på et blandingsspråk av dansk under innflytelse av norsk talemål. Dette blandingsspråket er utgangspunktet for det moderne bokmål. <br><br>
+    text: `Da dansk avløste norsk som skriftspråk betydde det ingen stor omveltning for nordmenn flest; talemålet var dialektene, og i byene hadde dialektene innslag av dansk, som i vekslende grad farget uttalen og ordforrådet hos de forskjellige sosiale lag. Etter 1550 vokser det frem en ny norsk litteratur med skrifter av blant andre Absalon Pederssøn Beyer, Jens Nielssøn og Peder Claussøn på et blandingsspråk av dansk under innflytelse av norsk talemål. Dette blandingsspråket er utgangspunktet for det moderne bokmål. <br><br>
 Fra midten av 1600-tallet utgis enkelte skrifter på bygdemål. I 1646 utgav presten Christen Jenssøn Den Norske Dictionarium med målføreord særlig fra Sunnfjord. Det er den første norske ordboken nest etter Jens Bjelkes juridiske ordsamling fra 1634. Med Ludvig Holbergs forfatterskap synes det som oppfatningen av at skriftspråket også er nordmennenes språk, får større styrke. Holbergs skriftspråk er lett norskfarget.<br><br>
 Et par ganger skrev regjeringen i København til embetsmennene også i Norge og bad dem gi opplysninger om språket i sine distrikter, første gang rundt 1700, annen gang 1743. Materialet ble delvis utnyttet av danske ordbokforfattere. Disse henvendelsene skapte interesse for norsk språk.<br><br>
-Interessen fikk sterk vekst ved de undersøkelser av norsk historie og norske forhold som ble satt i gang av Gerhard Schøning og biskop Johan E. Gunnerus i Trondheim. Norsk talemål ble undersøkt kyndigere enn før (særlig av Marcus Schnabel), betydelige diktere tok norske dialekter i bruk i sin diktning (Thomas Rosing de Stockfleth, Edvard Storm). I skrift brukte nordmennene som før mange norske innslag. På den annen side kan vi i annen halvdel av 1700-tallet for første gang sikkert konstatere et talemål i Norge med en vesentlig del av grunnlaget i dansk skrift. Dette talemålet synes likevel å være brukt bare som høytidelig språk blant folk av embetsklassen.<br><br>
-Begivenhetene i 1814 skapte ikke noe språkhistorisk skille på kort sikt. I § 33 i den reviderte Grunnloven av 4. nov. 1814 heter det at «Alle Forestillinger om Norske Sager, saavelsom de Expeditioner, som i Anledning deraf skee, forfattes i det Norske Sprog». Men det var et rent navnespørsmål. Språket var dansk, og det vakte en viss bitterhet i Danmark at det ble kalt noe annet i Norge. Først Henrik Wergeland la frem et program for fornorsking (1833), med forslag om norske skrivemåter som Hugg, Vilje, Haga (for Hug, Villie, Have); mer kjent er hans artikkel Om norsk Sprogreformation (skrevet 1832, trykt 1835), der han særlig rår til å ta opp målføreord for å berike skriftspråket.
-`
+Interessen fikk sterk vekst ved de undersøkelser av norsk historie og norske forhold som ble satt i gang av Gerhard Schøning og biskop Johan E. Gunnerus i Trondheim. Norsk talemål ble undersøkt kyndigere enn før (særlig av Marcus Schnabel), og betydelige diktere tok norske dialekter i bruk i sin diktning (Thomas Rosing de Stockfleth, Edvard Storm). I skrift brukte nordmennene som før mange norske innslag. På den annen side kan vi i annen halvdel av 1700-tallet for første gang sikkert konstatere et talemål i Norge med en vesentlig del av grunnlaget i dansk skrift. Dette talemålet synes likevel å være brukt bare som høytidelig språk blant folk av embetsklassen.<br><br>`
   },
   {
-    year: "1350 - 1905",
+    year: 1350,
     text: `<ul><li>1350: Svartedauden, norsk skriftspråk dør ut</li>
 <li>1380: Union med Danmark</li>
 <li>1500-tallet: Dansk bibel og dansk kirkepråk i Norge</li>
-<li>1814: Unionen oppløses, men dansk fortsatt skriftspråk</li>
+<li>1814: Unionen oppløses, men dansk fortsatt skriftspråk. <br> <br> Begivenhetene i 1814 skapte ikke noe språkhistorisk skille på kort sikt. I § 33 i den reviderte Grunnloven av 4. nov. 1814 heter det at «Alle Forestillinger om Norske Sager, saavelsom de Expeditioner, som i Anledning deraf skee, forfattes i det Norske Sprog». Men det var et rent navnespørsmål. Språket var dansk, og det vakte en viss bitterhet i Danmark at det ble kalt noe annet i Norge. Først Henrik Wergeland la frem et program for fornorsking (1833), med forslag om norske skrivemåter som Hugg, Vilje, Haga (for Hug, Villie, Have); mer kjent er hans artikkel Om norsk Sprogreformation (skrevet 1832, trykt 1835), der han særlig rår til å ta opp målføreord for å berike skriftspråket.<br> <br> </li>
 <li>1830: Språkdebatt, Wergeland tar til orde for fornorsking</li>
-<li>1840-tallet: Asbjørnsen og Moes Norske folkeeventyr</li>
-<li>1850: Ivar Aasen gir ut Ordbog over det norske Folkesprog</li>
-<li>1862: Knud Knudsens forslag til fornorsking vedtatt</li>
-<li>1885: "Landsmål" (nynorsk) likestilles med dansk-norsken</li>
-<li>1905: Unionen med Sverige oppløses</li></ul>`
+<li>1840-tallet: Asbjørnsen og Moes Norske folkeeventyr</li></ul>`
   },{
     year: 1840,
     text: `Det nasjonale gjennombrudd i 1840-årene førte til en språklig fornyelse på flere måter. Asbjørnsen og Moes gjenfortelling av folkeeventyrene gav grunnlaget for den nye norske prosa, som gjennomførte norsk stiltone i det tradisjonelle skriftspråket. Samtidig tok overlærer Knud Knudsen opp arbeidet for fornorsking på alle områder av språket (ordforrådet, orddannelse, bøyning, rettskrivning, uttale). Så kom fra 1848 de viktige arbeider av Ivar Aasen over det norske folkemål. På grunnlag av disse arbeidene, som viste sammenhengen mellom gammelnorsk og norske dialekter, bygde Aasen sin landsmålsnorm (første gang satt frem i Prøver af Landsmaalet i Norge, 1853). I sin normalform tok Aasen særlig hensyn til de dialekter som stod gammelnorsk nærmest så vel i bøyningsforhold som i lydforhold og ordforråd. Se også artikkel om norsk målreising. <br><br>
@@ -60,6 +54,15 @@ Mens det språklige reformarbeidet på 1800-tallet var sterkt preget av enkeltpe
 I 1929 endret Stortinget de offisielle navn på språkformene fra landsmål til nynorsk og fra riksmål til bokmål.<br><br>
 Språkutviklingen i vår tid preges sterkt av tilstrømningen av lånord, særlig fra engelsk (anglisismer) og svensk (svesismer). Flytting, pendling, massemedia og andre sider ved samfunnsutviklingen bidrar til å jevne ut ulikheter i talemålet. Men store og rasktvirkende endringer i skole, arbeidsliv og så videre har skapt større språklig ulikhet mellom eldre og yngre, yrkesaktive og ikke-yrkesaktive. Språket i massemedia og administrasjon øver sterkere innflytelse på språksamfunnet som helhet i vår tid enn frem til om lag 1900. Tendensen til at komplisert fagspråk «invaderer» allmennspråket, særlig i trykte, eterbaserte og digitale media, blir balansert av enklere strukturer, for eksempel i form av kortere setninger og en mindre komplisert setningsbygning.<br><br>
 `
+  },
+  {
+    year: "1850",
+    text: `<ul>
+    <li>1850: Ivar Aasen gir ut Ordbog over det norske Folkesprog</li>
+    <li>1862: Knud Knudsens forslag til fornorsking vedtatt.</li>
+    <li>1885: \"Landsmål\" (nynorsk) likestilles med dansk-norsken.</li>
+    <li>1905: Unionen med Sverige oppløses.</li>
+    </ul>`
   },
   {
     year: 1907,
