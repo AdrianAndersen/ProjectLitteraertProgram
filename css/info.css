@@ -531,7 +531,7 @@ ul li {
   /* row start | col start | row end | col end */
   grid-area: 3 / 2 / 9 / 6;
 
-  height: calc(var(--base)*400);
+  height: calc(var(--base)*455);
 
   padding: calc(var(--base)*12)
            calc(var(--base)*4)
