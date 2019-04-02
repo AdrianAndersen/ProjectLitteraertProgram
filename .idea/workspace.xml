@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ea5b1d8-06b5-42e0-91c2-d20ad9dae193" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/css/quizHistorie.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/quizHistorie.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quizHistorie.html" beforeDir="false" afterPath="$PROJECT_DIR$/quizHistorie.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/infoHistorie.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/infoHistorie.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/quizHistorie.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
-              <caret line="36" column="10" lean-forward="true" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+              <caret line="36" column="10" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -33,7 +32,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/quizHistorie.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
+            <state relative-caret-position="9545">
               <caret line="415" column="12" selection-start-line="415" selection-start-column="12" selection-end-line="415" selection-end-column="12" />
             </state>
           </provider>
@@ -47,7 +46,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/infoHistorie.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
+            <state relative-caret-position="805">
               <caret line="35" selection-start-line="35" selection-end-line="35" />
             </state>
           </provider>
@@ -56,17 +55,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/info.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7531">
+            <state relative-caret-position="10189">
               <caret line="443" selection-start-line="443" selection-end-line="443" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/infoHistorie.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="137" column="1" selection-start-line="137" selection-start-column="1" selection-end-line="137" selection-end-column="1" />
+            <state relative-caret-position="460">
+              <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -100,17 +99,17 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/css/info.css" />
-        <option value="$PROJECT_DIR$/scripts/infoHistorie.js" />
         <option value="$PROJECT_DIR$/css/quizHistorie.css" />
         <option value="$PROJECT_DIR$/quizHistorie.html" />
+        <option value="$PROJECT_DIR$/scripts/infoHistorie.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="240" />
-    <option name="y" value="127" />
-    <option name="width" value="1440" />
-    <option name="height" value="765" />
+    <option name="x" value="239" />
+    <option name="y" value="126" />
+    <option name="width" value="1441" />
+    <option name="height" value="767" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -177,17 +176,18 @@
       <workItem from="1554121086654" duration="6682000" />
       <workItem from="1554138893617" duration="6252000" />
       <workItem from="1554176133483" duration="137000" />
+      <workItem from="1554187898579" duration="124000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13071000" />
+    <option name="totallyTimeSpent" value="13195000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <frame x="-7" y="-7" width="1477" height="837" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22257552" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22551093" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -224,30 +224,10 @@
     <entry file="file://$PROJECT_DIR$/spillDialekter.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/info.css">
+    <entry file="file://$PROJECT_DIR$/quizHistorie.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7531">
-          <caret line="443" selection-start-line="443" selection-end-line="443" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/infoHistorie.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="137" column="1" selection-start-line="137" selection-start-column="1" selection-end-line="137" selection-end-column="1" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/infoHistorie.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        <state relative-caret-position="289">
+          <caret line="36" column="10" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -256,15 +236,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/quizHistorie.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
+        <state relative-caret-position="9545">
           <caret line="415" column="12" selection-start-line="415" selection-start-column="12" selection-end-line="415" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quizHistorie.html">
+    <entry file="file://$PROJECT_DIR$/admin.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infoHistorie.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="36" column="10" lean-forward="true" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+        <state relative-caret-position="805">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/info.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10189">
+          <caret line="443" selection-start-line="443" selection-end-line="443" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/infoHistorie.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
