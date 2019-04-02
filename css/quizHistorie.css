@@ -413,7 +413,7 @@ button:disabled {
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .innpakning {
